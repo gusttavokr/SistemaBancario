@@ -1,3 +1,0 @@
-# Sistema Bancário
-
-oiiii
