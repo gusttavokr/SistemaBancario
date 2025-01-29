@@ -18,7 +18,7 @@ O projeto __Sistema Bancário__ tem como objetivo prover uma solução simples, 
 |         __        | __   |
 |:------------------|:-----|
 | **_O problema_**    | Tornar mais ágil o acesso ao seu banco, o que por praticidade e agilidade realizar transações, depósitos, ver o extrato, etc.  |
-| **_afetando_**      | Profissionais e empresas que precisam se deslocar à uma lotérica ou caixa eletrônico para realizar uma simples transação. |
+| **_afetando_**      | Profissionais, ou civis que precisam se deslocar à uma lotérica ou caixa eletrônico para realizar uma simples transação. |
 | **_cujo impacto é_**| Atraso em outras emergências e falta de praticidade. |
 | **_uma boa solução seria_** | Um sistema na Internet que permita os usuários, de forma ágil, ter o controle total de suas ações bancárias. |
 
