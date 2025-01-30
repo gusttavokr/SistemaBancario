@@ -55,10 +55,10 @@ O sistema deve ter uma interface amigável e permitir o acesso concorrente de cl
 | Código | Nome | Descrição |
 |:---  |:--- |:--- |
 | RF01 | Entrar no sistema | Usuários devem logar no sistema para acessar as funcionalidades relacionadas ao agendamento |
-| RF02 | Cadastro de Clientes | Administrador do sistema mantém o cadastro dos clientes |
-| RF03 | Cadastro de Seguros | Administrador do sistema mantém o cadastro dos seguros |
-| RF04 | Cadastro de Categorias | Administrador do sistema mantém o cadastro das categorias dos cartões |
-| RF05 | Cadastro de Cartões | Administrador do sistema mantém o cadastro dos cartões |
+| RF02 | ManterCadastro de Clientes | Administrador do sistema mantém o cadastro dos clientes |
+| RF03 | ManterCadastro de Seguros | Administrador do sistema mantém o cadastro dos seguros |
+| RF04 | ManterCadastro de Categorias | Administrador do sistema mantém o cadastro das categorias dos cartões |
+| RF05 | ManterCadastro de Cartões | Administrador do sistema mantém o cadastro dos cartões |
 | RF06 | Ver o saldo | O cliente pode ver o seu saldo atual |
 | RF07 | Ver extrato | O cliente pode ver o extrato de operações feitas |
 | RF08 | Depositar | O cliente pode realizar um depósito |
