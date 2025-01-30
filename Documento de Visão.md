@@ -17,17 +17,17 @@ O projeto __Sistema Bancário__ tem como objetivo prover uma solução simples, 
 
 |         __        | __   |
 |:------------------|:-----|
-| **_O problema_**    | Tornar mais ágil o acesso ao seu banco, o que por praticidade e agilidade realizar transações, depósitos, ver o extrato, etc.  |
+| **_O problema_**    | Dificuldade ao acesso do seu banco, o que por praticidade e agilidade poderia realizar transações, depósitos, ver o extrato, etc.  |
 | **_afetando_**      | Profissionais, ou civis que precisam se deslocar à uma lotérica ou caixa eletrônico para realizar uma simples transação. |
 | **_cujo impacto é_**| Atraso em outras emergências e falta de praticidade. |
-| **_uma boa solução seria_** | Um sistema na Internet que permita os usuários, de forma ágil, ter o controle total de suas ações bancárias. |
+| **_uma boa solução seria_** | Um sistema que permita os usuários, de forma ágil, ter o controle total de suas ações bancárias. |
 
 ### 3. Descrição dos Usuários
 
 | Nome | Descrição | Responsabilidades |
 |:---  |:--- |:--- |
 | Administrador  | Realiza as atividades básicas para o início da operação do sistema | Mantém o cadastro dos usuários, além de ser responsável pelo cadastro dos seguros e cartões |
-| Usuário  | Realiza as atividades relacionadas às operações | Mantém o contrato de seguros; Depósito, transações e extrato; Pedido e acesso aos seus cartões |
+| Cliente | Realiza as atividades relacionadas às operações | Mantém o contrato de seguros; Depósito, transações e extrato; Pedido e acesso aos seus cartões |
 
 
 ### 4. Descrição do Ambiente dos Usuários
@@ -59,21 +59,20 @@ O sistema deve ter uma interface amigável e permitir o acesso concorrente de cl
 | RF03 | Cadastro de Seguros | Administrador do sistema mantém o cadastro dos seguros |
 | RF04 | Cadastro de Categorias | Administrador do sistema mantém o cadastro das categorias dos cartões |
 | RF05 | Cadastro de Cartões | Administrador do sistema mantém o cadastro dos cartões |
-| RF06 | Ver o saldo | Administrador do sistema mantém o cadastro dos funcionários responsáveis pelo gerenciamento das agendas |
-| RF07 | Ver extrato |  Funcionário mantém a relação de serviços prestados pela empresa ou profissional |
-| RF08 | Depositar | Funcionário registra os horários disponíveis de atendimento, confirma e cancela o agendamento de clientes |
-| RF09 | Transferir | Cliente deve realizar o auto cadastramento |
-| RF10 | Contratar seguro | Cliente consulta agendas de atendimento dos serviços disponíveis, podendo agendar um serviço  |
-| RF11 | Ver seus seguros | Cliente consulta atendimentos agendados, podendo cancelar um agendamento |
-| RF12 | Pedir um cartão | Usuários devem logar no sistema para acessar as funcionalidades relacionadas ao agendamento |
-| RF13 | Ver cartões | Administrador do sistema mantém o cadastro dos funcionários responsáveis pelo gerenciamento das agendas |
+| RF06 | Ver o saldo | O cliente pode ver o seu saldo atual |
+| RF07 | Ver extrato | O cliente pode ver o extrato de operações feitas |
+| RF08 | Depositar | O cliente pode realizar um depósito |
+| RF09 | Transferir | O cliente pode realizar uma transferência |
+| RF10 | Contratar seguro | O cliente pode contratar os seguros cadastrados pelo banco  |
+| RF11 | Ver seus seguros | O cliente pode ver seus seguros contratados |
+| RF12 | Pedir um cartão | O cliente pode solicitar um cartão do banco |
+| RF13 | Ver cartões | O cliente pode ver todos os seus cartões |
 
 ### 9. Requisitos Não-funcionais
 
  Código | Nome | Descrição | Categoria | Classificação
 |:---  |:--- |:--- |:--- |:--- |
-| RNF01 | Criptografia de dados| Senhas de usuários devem ser gravadas de forma criptografada no banco de dados. | Segurança | Obrigatório |
-| RNF02 | Controle de acesso | Só usuários autenticados podem ter acesso ao sistema, com exceção ao auto cadastramento do usuário. | Segurança | Obrigatório |
+| RNF01 | Controle de acesso | Só usuários autenticados podem ter acesso ao sistema, com exceção ao auto cadastramento do usuário. | Segurança | Obrigatório |
+| RNF02 | Dados pessoais | Os clientes não devem visualizar dados de outros clientes (na agenda, por exemplo). | Privacidade | Obrigatório |
 | RNF03 | Tempo de resposta |A comunicação entre o servidor e o cliente deve ocorrer em tempo hábil | Performance | Desejável |
 | RNF04 | Sistema Web | A aplicação deve ser um site. | Arquitetura | Desejável |
-| RNF05 | Dados pessoais | Os clientes não devem visualizar dados de outros clientes (na agenda, por exemplo). | Privacidade | Obrigatório |
