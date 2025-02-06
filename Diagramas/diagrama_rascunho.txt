@@ -1,0 +1,13 @@
+CLIENTE -> id, Nome, CPF, Telefone, Data de nascimento, Admin(CRUD)
+
+CONTA -> id, Número, Saldo
+
+CARTÃO -> id, Descrição(CRUD)
+
+LANÇAMENTOS -> id, número_conta_origem, número_conta_destino, id_tipo_lançamento, Valor
+
+TIPOS_LANÇAMENTOS -> id, Descrição(CRUD)
+
+PEDIDOS -> id, id_cliente, id_conta, id_cartão, aprovação(definida pelo admin)
+
+
