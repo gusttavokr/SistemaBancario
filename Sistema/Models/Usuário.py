@@ -12,7 +12,10 @@ class Usuário:
     def getId(self):
         return self.__id
     def setId(self, id):
-        return self.__id == id
+        if len(str(id)) > 0:
+            self.__id == id
+        else:
+            raise ValueError('Id inválido')
 
     def getAdmin(self):
         return self.__admin
