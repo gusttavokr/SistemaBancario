@@ -26,4 +26,12 @@ class tipoLançamento:
         return f"ID = {self.__id} - Descrição = {self.__descrição}"
     
 class tiposLançamentos(Modelo):
+    @classmethod
+    def abrir(cls):
+        cls.objetos = []
+        try:
+            with open("Sistema/Json/tiposLançamentos.json", mode = "r") as arquivo:
+                objetos = json.dump(arquivo)
+                for obj in objetos:
+                    tiposL = tipoLançamento(obj["_ti"])
     
