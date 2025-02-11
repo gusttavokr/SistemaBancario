@@ -57,7 +57,7 @@ class Pedidos(Modelo):
             with open("Sistema/Jso/PedidosCartão.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
-                    p = Pedido(obj["_Conta_id"], obj["_Conta_numero"], obj["_Conta_saldo"])
+                    p = Pedido(obj["_Pedido_id"], obj["_Pedido_idCliente"], obj["_Pedido_idConta"], obj["_Pedido_idCartão"], obj["_Pedido_aprovação"])
                     cls.objetos.append(p)
         except FileNotFoundError:
             pass

@@ -39,7 +39,7 @@ class Contas(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("Sistema/Jso/Contas.json", mode="r") as arquivo:
+            with open("Sistema/Json/Contas.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     c = Conta(obj["_Conta_id"], obj["_Conta_numero"], obj["_Conta_saldo"])
