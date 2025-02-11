@@ -13,7 +13,7 @@ class Pedido:
         return self.__id
     def setId(self, id):
         if len(str(id)) > 0:
-            self.__id == id
+            self.__id = id
         else:
             raise ValueError('Id inválido')
 
