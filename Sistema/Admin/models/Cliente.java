@@ -95,6 +95,13 @@ public class Cliente  implements VerificaGetId {
 
 public class Clientes extends CRUD<Cliente> {
 
+    public Clientes(List<Cliente> listaClientes) {
+        super(listaClientes);
+    }
+
+    abrir() {
+        
+    }
 }
 
 
