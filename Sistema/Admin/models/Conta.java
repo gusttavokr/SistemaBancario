@@ -1,3 +1,5 @@
+package models;
+
 import java.util.Arrays;
 
 public class Conta {
@@ -80,4 +82,9 @@ public class Conta {
     public String toString() {
         return String.format("ID do Cliente: %d - ID dos Cartões: %d - Número: %s - Saldo: R$ %.2f", this.getIdCliente(), Arrays.toString(this.getIdCartao()), this.getNumero(), this.getSaldo());
     }
+}
+
+
+public class Contas {
+    
 }

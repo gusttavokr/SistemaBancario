@@ -1,4 +1,6 @@
-public class TipoLancamento {
+package models;
+
+public class TipoLancamento implements VerificaGetId {
     private int id;
     private String descricao;
 
@@ -34,4 +36,9 @@ public class TipoLancamento {
     public String toString() {
         return String.format("Descrição: %s", this.getDescricao());
     }
+}
+
+
+public class TiposLancamentos extends CRUD<TipoLancamento> {
+    
 }

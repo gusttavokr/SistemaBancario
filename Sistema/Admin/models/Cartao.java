@@ -1,8 +1,10 @@
-public class Cartao {
+package models;
+
+public class Cartao implements VerificaGetId {
     private int id;
     private String tipo;
     
-    public Cartao(int id, String tipo) {
+    public Cartao(int id, String tipo){
         this.setId(id);
         this.setTipo(tipo);
     }
@@ -35,3 +37,7 @@ public class Cartao {
         return String.format("Tipo do cartão: %s", this.getTipo());
     }
 } 
+
+public class Cartoes extends CRUD<Cartoes> {
+    
+}

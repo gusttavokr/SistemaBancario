@@ -1,4 +1,6 @@
-public class Cliente {
+package models;
+
+public class Cliente  implements VerificaGetId {
     private int id;
     private String nome;
     private String cpf;
@@ -90,3 +92,21 @@ public class Cliente {
     }
 
 }
+
+public class Clientes extends CRUD<Cliente> {
+
+}
+
+
+
+// // ProductCRUD.java
+// import java.util.List;
+
+// public class ProductCRUD extends CRUD<Product> {
+
+//     public ProductCRUD(List<Product> db) {
+//         super(db);
+//     }
+
+//     // Aqui você pode adicionar métodos específicos para manipular produtos, se necessário.
+// }

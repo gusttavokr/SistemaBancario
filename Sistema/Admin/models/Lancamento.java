@@ -1,3 +1,5 @@
+package models;
+
 public class Lancamento {
     private int id;
     private int idTipoLancamento;
@@ -76,4 +78,9 @@ public class Lancamento {
     public String toString() {
         return String.format("ID Tipo de Lançamento: %d - Conta de Origem: %s - Conta de Destino: %s - Valor: R$ %.2f", this.getIdTipoLancamento(), this.getNumeroContaOrigem(), this.getNumeroContaDestino(), this.getValor());
     }
+}
+
+
+public class Lancamentos {
+    
 }

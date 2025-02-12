@@ -1,3 +1,5 @@
+package models;
+
 public class PedidoCartao {
     private int id;
     private int idCliente;
