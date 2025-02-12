@@ -1,0 +1,4 @@
+mvn clean install -> compilação
+
+mvn exec:java -Dexec.mainClass="com.exemplo.App" -> roda o código, deve-se substituir o "com.exemplo" pelo package do App
+
