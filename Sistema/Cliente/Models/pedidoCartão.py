@@ -47,7 +47,7 @@ class Pedido:
         self.__aprovação = aprovação        
 
     def __str__(self):
-        return f"ID = {self.__id} - idCliente = {self.__idCliente} - idConta = {self.__idConta} - idCartão = {self.__idCartão} - Aprovação = {self.__aprovação}"
+        return f"ID = {self.getId()} - idCliente = {self.getIdCliente()} - idConta = {self.getIdConta()} - idCartão = {self.getIdCartão()} - Aprovação = {self.getAprovação()}"
     
 class Pedidos(Modelo):
     @classmethod

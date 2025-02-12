@@ -47,7 +47,7 @@ class Usuário:
             raise ValueError("Idade insuficiente")
     
     def __str__(self):
-        return f"Id: {self.__getId()} - Nome: {self.__getNome()} - Cpf: {self.__getCPF()} - Telefone {self.__getTelefone()} - Idade {self.__getIdade()}"
+        return f"Id: {self.getId()} - Nome: {self.getNome()} - Cpf: {self.getCPF()} - Telefone {self.getTelefone()} - Idade {self.getIdade()}"
 
 class Usuários(Modelo):
     @classmethod

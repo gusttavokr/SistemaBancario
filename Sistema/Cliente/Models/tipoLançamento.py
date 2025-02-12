@@ -23,7 +23,7 @@ class tipoLançamento:
             raise ValueError("Descrição inválida")
 
     def __str__(self):
-        return f"ID = {self.__id} - Descrição = {self.__descrição}"
+        return f"ID = {self.getId()} - Descrição = {self.getDescrição()}"
     
 class tiposLançamentos(Modelo):
     @classmethod
