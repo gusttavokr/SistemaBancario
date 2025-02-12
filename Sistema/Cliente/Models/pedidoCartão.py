@@ -21,7 +21,7 @@ class Pedido:
         return self.__idCliente
     def setIdCliente(self, id_cliente):
         if len(str(id_cliente)) > 0:
-            self.__idCliente == id_cliente
+            self.__idCliente = id_cliente
         else:
             raise ValueError('Id do cliente inválido')
 
@@ -29,7 +29,7 @@ class Pedido:
         return self.__idConta
     def setIdConta(self, id_conta):
         if len(str(id_conta)) > 0:
-            self.__idConta == id_conta
+            self.__idConta = id_conta
         else:
             raise ValueError('Id da conta inválido')
 
@@ -37,7 +37,7 @@ class Pedido:
         return self.__idCartão
     def setIdCartão(self, id_cartão):
         if len(str(id_cartão)) > 0:
-            self.__idCartão == id_cartão
+            self.__idCartão = id_cartão
         else:
             raise ValueError('Id do cartão inválido')
 

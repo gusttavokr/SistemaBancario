@@ -2,8 +2,9 @@ import json
 from Models.Modelo import Modelo
 
 class Conta:
-    def __init__(self, id, numero, saldo):
+    def __init__(self, id, idCliente, numero, saldo):
         self.__id = id
+        self.__idCliente = idCliente
         self.__numero = numero
         self.__saldo = saldo
 
@@ -11,7 +12,7 @@ class Conta:
         return self.__id
     def setId(self, id):
         if len(str(id)) > 0:
-            self.__id == id
+            self.__id = id
         else:
             raise ValueError('Id inválido')
         
@@ -19,7 +20,7 @@ class Conta:
         return self.__numero
     def setNumero(self, numero):
         if len(numero) > 0 and len(numero) < 11:
-            self.__numero == numero
+            self.__numero = numero
         else:
             raise ValueError("Número inválido")
         
@@ -30,9 +31,18 @@ class Conta:
             self.__saldo = saldo
         else:
             raise ValueError("Saldo inválido")
+        
+    def getIdCliente(self):
+        return self.__idCliente
+    def setIdCliente(self, idCliente):
+        if len(str(idCliente)) > 0:
+            self.__idCliente = idCliente
+        else:
+            raise ValueError('Id do cliente inválido')
+
 
     def __str__(self):
-        return f"Id = {self.__id} - Número = {self.__numero} - Saldo = {self.__saldo}"
+        return f"Id = {self.getId()} - IdCliente = {self.getIdCliente()} - Número = {self.getNumero()} - Saldo = {self.getSaldo()}"
     
 class Contas(Modelo):
     @classmethod
@@ -42,7 +52,7 @@ class Contas(Modelo):
             with open("Sistema/Json/Contas.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
-                    c = Conta(obj["_Conta_id"], obj["_Conta_numero"], obj["_Conta_saldo"])
+                    c = Conta(obj["_Conta_id"], obj["_Conta_idCliente"], obj["_Conta_numero"], obj["_Conta_saldo"])
                     cls.objetos.append(c)
         except FileNotFoundError:
             pass

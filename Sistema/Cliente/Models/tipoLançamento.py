@@ -33,5 +33,14 @@ class tiposLançamentos(Modelo):
             with open("Sistema/Json/tiposLançamentos.json", mode = "r") as arquivo:
                 objetos = json.dump(arquivo)
                 for obj in objetos:
-                    tiposL = tipoLançamento(obj["_ti"])
-    
+                    tiposL = tipoLançamento(obj["_tipoLançamento_id"], obj["_tipoLançamento_descrição"])
+                    cls.objetos.append(tiposL)
+        except FileNotFoundError:
+            pass
+        except json.JSONDecodeError:
+            pass
+
+    @classmethod
+    def salvar(cls):
+        with open("Sistema/Json/tiposLançamentos.json", mode="w") as arquivo:
+            json.dump(cls.objetos, arquivo, default =vars)
