@@ -47,7 +47,7 @@ class Cliente:
             raise ValueError("Idade insuficiente")
     
     def __str__(self):
-        return f"Id: {self.getId()} - Nome: {self.getNome()} - Cpf: {self.getCPF()} - Telefone {self.getTelefone()} - Idade {self.getIdade()}"
+        return f"Id: {self.getId()} - Nome: {self.getNome()} - Cpf: {self.getCPF()} - Telefone: {self.getTelefone()} - Idade: {self.getIdade()}"
 
     def to_json(self):
 
