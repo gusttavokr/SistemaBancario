@@ -22,5 +22,13 @@
         "telefone": "33333333",
         "idade": 50,
         "admin": false
+    },
+    {
+        "id": 4,
+        "nome": "Gilbert",
+        "cpf": "123456789",
+        "telefone": "123456789",
+        "idade": 30,
+        "admin": false
     }
 ]
