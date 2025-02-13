@@ -2,13 +2,13 @@ import json
 from Models.Modelo import Modelo
 
 class Usuário:
-    def __init__(self, id, admin, nome, cpf, telefone, idade):
+    def __init__(self, id, nome, cpf, telefone, idade, admin):
         self.__id = id
-        self.__admin = admin
         self.__nome = nome
         self.__cpf = cpf
         self.__telefone = telefone
         self.__idade = idade
+        self.__admin = admin
 
     def getId(self):
         return self.__id
