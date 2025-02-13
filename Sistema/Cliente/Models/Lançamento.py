@@ -48,7 +48,7 @@ class Lançamentos(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("Sistema/Json/Lançamentos.json", mode ="r") as arquivo:
+            with open("Sistema/Json/lancamentos.json", mode ="r") as arquivo:
                 objetos = json.dump(arquivo)
                 for obj in objetos:
                     L = Lançamento(obj["_Lançamento_id"], obj["_Lançamento_idTipoLançamento"], obj["_Lançamento_numeroContaOrigem"], obj["_Lançamento_numeroContaDestino"])

@@ -54,7 +54,7 @@ class Pedidos(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("Sistema/Jso/PedidosCartão.json", mode="r") as arquivo:
+            with open("Sistema/Json/pedidosCartao.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     p = Pedido(obj["_Pedido_id"], obj["_Pedido_idCliente"], obj["_Pedido_idConta"], obj["_Pedido_idCartão"], obj["_Pedido_aprovação"])
@@ -65,5 +65,5 @@ class Pedidos(Modelo):
             pass
     @classmethod
     def salvar(cls):
-        with open("Sistema/Json/PedidosCartão.json", mode="w") as arquivo:
+        with open("Sistema/Json/pedidosCartao.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default =vars)

@@ -30,7 +30,7 @@ class Cartões(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("Sistema/Jso/Cartões.json", mode="r") as arquivo:
+            with open("Sistema/Jso/cartoes.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     card = Cartão(obj["_Cartão_id"], obj["_Cartão_tipo"])

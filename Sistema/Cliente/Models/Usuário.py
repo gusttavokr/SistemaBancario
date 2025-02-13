@@ -1,7 +1,7 @@
 import json
 from Models.Modelo import Modelo
 
-class Usuário:
+class Cliente:
     def __init__(self, id, nome, cpf, telefone, idade, admin):
         self.__id = id
         self.__nome = nome
@@ -49,15 +49,15 @@ class Usuário:
     def __str__(self):
         return f"Id: {self.getId()} - Nome: {self.getNome()} - Cpf: {self.getCPF()} - Telefone {self.getTelefone()} - Idade {self.getIdade()}"
 
-class Usuários(Modelo):
+class Clientes(Modelo):
     @classmethod
     def abrir(cls):
         cls.objetos = []
         try:
-            with open ("Sistema/Json/Usuários.json", mode="r") as arquivo:
+            with open ("Sistema/Json/clientes.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
-                    u = Usuário(obj["_Usuário_id"], obj["_Usuário_admin"], obj["_Usuário_nome"],  obj["_Usuário_cpf"],  obj["_Usuário_telefone"], obj["_Usuário_idade"])
+                    u = Cliente(obj["_Cliente_id"], obj["_Cliente_nome"],  obj["_Cliente_cpf"],  obj["_Cliente_telefone"], obj["_Cliente_idade"], obj["_Cliente_admin"])
                     cls.objetos.append(u)
         except FileNotFoundError:
             pass
@@ -66,5 +66,5 @@ class Usuários(Modelo):
 
     @classmethod
     def salvar(cls):
-        with open("Sistema/Json/Usuários.json", mode="w") as arquivo:
+        with open("Sistema/Json/clientes.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default=vars)

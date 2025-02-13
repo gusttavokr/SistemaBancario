@@ -30,7 +30,7 @@ class tiposLançamentos(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("Sistema/Json/tiposLançamentos.json", mode = "r") as arquivo:
+            with open("Sistema/Json/tiposLancamentos.json", mode = "r") as arquivo:
                 objetos = json.dump(arquivo)
                 for obj in objetos:
                     tiposL = tipoLançamento(obj["_tipoLançamento_id"], obj["_tipoLançamento_descrição"])
@@ -42,5 +42,5 @@ class tiposLançamentos(Modelo):
 
     @classmethod
     def salvar(cls):
-        with open("Sistema/Json/tiposLançamentos.json", mode="w") as arquivo:
+        with open("Sistema/Json/tiposLancamentos.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default =vars)
