@@ -1,0 +1,3 @@
+compilar -> mvn clear compile
+
+rodar -> mvn exec:java -Dexec.mainClass="com.admin.App"
