@@ -1,10 +1,18 @@
 [
-    {
-        "id": 1,
-        "nome": "Gustavo",
-        "cpf": "11111111",
-        "telefone": "11111111",
-        "idade": 19,
-        "admin": false
-    }
+  {
+    "id": 1,
+    "nome": "Gustavo",
+    "cpf": "11111111",
+    "telefone": "11111111",
+    "idade": 19,
+    "admin": false
+  },
+  {
+    "id": 2,
+    "nome": "Antonio",
+    "cpf": "12345",
+    "telefone": "12345",
+    "idade": 20,
+    "admin": false
+  }
 ]
