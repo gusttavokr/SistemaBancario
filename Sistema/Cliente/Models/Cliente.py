@@ -49,7 +49,22 @@ class Cliente:
     def __str__(self):
         return f"Id: {self.getId()} - Nome: {self.getNome()} - Cpf: {self.getCPF()} - Telefone {self.getTelefone()} - Idade {self.getIdade()}"
 
+    def to_json(self):
+
+        dic = {}
+        dic["id"] = self.getId()
+        dic["nome"] = self.getNome()
+        dic["cpf"] = self.getCPF()
+        dic["telefone"] = self.getTelefone()
+        dic["idade"] = self.getIdade()
+        dic["admin"] = self.getAdmin()
+        return dic
+
 class Clientes(Modelo):
+    @classmethod
+    def salvar(cls):
+        with open("Sistema/Json/clientes.json", mode="w") as arquivo:
+            json.dump(cls.objetos, arquivo, default=lambda o: o.to_json(), indent=4)
     @classmethod
     def abrir(cls):
         cls.objetos = []
@@ -57,14 +72,17 @@ class Clientes(Modelo):
             with open ("Sistema/Json/clientes.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
-                    u = Cliente(obj["_Cliente_id"], obj["_Cliente_nome"],  obj["_Cliente_cpf"],  obj["_Cliente_telefone"], obj["_Cliente_idade"], obj["_Cliente_admin"])
+                    u = Cliente(
+                        obj["id"],
+                        obj["nome"],
+                        obj["cpf"],
+                        obj["telefone"],
+                        obj["idade"],
+                        obj["admin"]
+                    )
                     cls.objetos.append(u)
         except FileNotFoundError:
             pass
         except json.JSONDecodeError:
             pass
 
-    @classmethod
-    def salvar(cls):
-        with open("Sistema/Json/clientes.json", mode="w") as arquivo:
-            json.dump(cls.objetos, arquivo, default=vars)
