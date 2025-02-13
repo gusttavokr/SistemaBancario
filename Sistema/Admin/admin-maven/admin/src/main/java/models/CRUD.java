@@ -1,15 +1,7 @@
 package models;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-import java.io.FileWriter;
-import java.io.FileReader;
-import java.io.IOException;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class CRUD<TipoObjeto extends VerificaId> {
 
@@ -24,12 +16,12 @@ public class CRUD<TipoObjeto extends VerificaId> {
     public void inserir(TipoObjeto objeto) {
         abrir();
         int id = 0;
-        for (int i = 0; i < listaObjetos.size(); i++) {
-            if (listaObjetos.get(i).getId() > id) {
-                id = listaObjetos.get(i).getId();
+        for (TipoObjeto obj : listaObjetos) {
+            if (obj.getId() > id) {
+                id = obj.getId();
             }
         }
-        objeto.setId(id+1);
+        objeto.setId(id + 1);
         listaObjetos.add(objeto);
         salvar();
     }
@@ -66,15 +58,22 @@ public class CRUD<TipoObjeto extends VerificaId> {
     // Método para salvar a lista de objetos no arquivo JSON
     private void salvar() {
         if (tipoObjeto == Cliente.class) {
-            Clientes.salvar((List<Cliente>) listaObjetos);
+            Clientes.salvar((List<Cliente>) (List<?>) listaObjetos); // Cast de forma segura
+        } else if (tipoObjeto == Cartao.class) {
+            Cartoes.salvar((List<Cartao>) (List<?>) listaObjetos); // Cast de forma segura
+        } else if (tipoObjeto == TipoLancamento.class) {
+            TiposLancamentos.salvar((List<TipoLancamento>) (List<?>) listaObjetos); // Cast de forma segura
         }
     }
 
     // Método para abrir os dados do arquivo JSON e carregar na lista de objetos
     private void abrir() {
         if (tipoObjeto == Cliente.class) {
-            listaObjetos = (List<TipoObjeto>) Clientes.abrir();
+            listaObjetos = (List<TipoObjeto>) (List<?>) Clientes.abrir(); // Cast de forma segura
+        } else if (tipoObjeto == Cartao.class) {
+            listaObjetos = (List<TipoObjeto>) (List<?>) Cartoes.abrir(); // Cast de forma segura
+        } else if (tipoObjeto == TipoLancamento.class) {
+            listaObjetos = (List<TipoObjeto>) (List<?>) TiposLancamentos.abrir(); // Cast de forma segura
         }
     }
-
 }

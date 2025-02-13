@@ -14,7 +14,7 @@ public class Clientes {
 
     public static void salvar(List<Cliente> listaObjetos) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (FileWriter writer = new FileWriter("data/clientes.json")) {
+        try (FileWriter writer = new FileWriter("/workspaces/SistemaBancario/Sistema/Json/clientes.json")) {
             gson.toJson(listaObjetos, writer); // Converte a lista para JSON e escreve no arquivo
         } catch (IOException erro) {
             erro.printStackTrace();
@@ -24,7 +24,7 @@ public class Clientes {
     public static List<Cliente> abrir() {
         Gson gson = new Gson();
         List<Cliente> listaObjetos = new ArrayList<>(); // Inicializando a lista com um ArrayList vazio
-        try (FileReader reader = new FileReader("data/clientes.json")) {
+        try (FileReader reader = new FileReader("/workspaces/SistemaBancario/Sistema/Json/clientes.json")) {
             Type tipoObjeto = new TypeToken<List<Cliente>>() {}.getType(); // Define o tipo da lista
             listaObjetos = gson.fromJson(reader, tipoObjeto); // Desserializa o JSON para a lista de clientes
             if (listaObjetos == null) {
