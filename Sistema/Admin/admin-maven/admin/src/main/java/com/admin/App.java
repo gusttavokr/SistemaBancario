@@ -46,6 +46,7 @@ public class App
         String tipo = scanner.nextLine();
         Cartao cartao = new Cartao(0, tipo);
         cartoes.inserir(cartao);
+        // REFAZER ESSA FUNÇÃO
     }
 
     public static void listarCartoes(CRUD<Cartao> cartoes) {
@@ -103,7 +104,7 @@ public class App
                 run = false;
                 break;
             default:
-                System.out.println("Opção inválida.");
+                System.out.println("Opção inválida.\n");
                 break;
             }
         }
