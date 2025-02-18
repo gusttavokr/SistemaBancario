@@ -1,27 +1,20 @@
 package com.admin;
 
-import models.Cliente;
-import models.Cartao;
-import models.TipoLancamento;
-import models.TiposLancamentos;
-import models.CRUD;
-
+import view.View;
 import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
 
 
-public class App 
-{   
+
+public class App {
     public static int menu(Scanner scanner) {
-        System.out.println("1-Inserir Cliente\n2-Listar Clientes\n3-Inserir Cartão\n4-Listar Cartões\n5-Inserir Tipo de Lançamento\n6-Listar Tipos de Lançamentos\n7-Sair");
+        System.out.println("1-Inserir Cliente\n2-Listar Clientes\n3-Atualizar Cliente\n4-Deletar Cliente\n5-Inserir Tipo de Lançamento\n6-Listar Tipos de Lançamentos\n7-Sair");
         System.out.print("Digite a opção desejada: ");
         int op = scanner.nextInt();
         scanner.nextLine();
         return op;
     }
 
-    public static void inserirCliente(Scanner scanner, CRUD<Cliente> clientes) {
+    public static void inserirCliente(Scanner scanner) {
         System.out.print("Digite o nome do cliente: ");
         String nome = scanner.nextLine();
         System.out.print("Digite o CPF do cliente: ");
@@ -29,83 +22,82 @@ public class App
         System.out.print("Digite o telefone do cliente: ");
         String telefone = scanner.nextLine();
         System.out.print("Digite a idade do cliente: ");
-        int idade = Integer.parseInt(scanner.nextLine()); // Usa nextLine() para ler e converte para int
-        Cliente cliente = new Cliente(0, nome, cpf, telefone, idade);
-        clientes.inserir(cliente);
-    }
-    
-    public static void listarClientes(CRUD<Cliente> clientes) {
-        List<Cliente> listaClientes = clientes.listar();
-        for (Cliente c : listaClientes) {
-            System.out.println(c.toString());
-        }
+        int idade = scanner.nextInt();
+        scanner.nextLine();
+        View.inserirCliente(nome, cpf, telefone, idade);
     }
 
-    public static void inserirCartao(Scanner scanner, CRUD<Cartao> cartoes) {
-        System.out.print("Digite o tipo do cartão: ");
-        String tipo = scanner.nextLine();
-        Cartao cartao = new Cartao(0, tipo);
-        cartoes.inserir(cartao);
-        // REFAZER ESSA FUNÇÃO
+    public static void listarClientes() {
+        View.listarClientes();
     }
 
-    public static void listarCartoes(CRUD<Cartao> cartoes) {
-        List<Cartao> listaCartoes = cartoes.listar();
-        for (Cartao c : listaCartoes) {
-            System.out.println(c.toString());
-        }
+    public static void atualizarCliente(Scanner scanner) {
+        System.out.print("Digite o ID do cliente desejado: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Digite o novo nome do cliente: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite o novo CPF do cliente: ");
+        String cpf = scanner.nextLine();
+        System.out.print("Digite o novo telefone do cliente: ");
+        String telefone = scanner.nextLine();
+        System.out.print("Digite a nova idade do cliente: ");
+        int idade = scanner.nextInt();
+        scanner.nextLine();
+        View.atualizarCliente(id, nome, cpf, telefone, idade); }
+
+    public static void deletarCliente(Scanner scanner) {
+        System.out.print("Digite o ID do cliente desejado: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        View.deletarCliente(id);
     }
 
-    public static void inserirTipoLancamento(Scanner scanner, CRUD<TipoLancamento> tiposLancamentos) {
+    public static void inserirTipoLancamento(Scanner scanner) {
         System.out.print("Digite a descrição do tipo de lançamento: ");
         String descricao = scanner.nextLine();
-        TipoLancamento tipoLancamento = new TipoLancamento(0, descricao);
-        tiposLancamentos.inserir(tipoLancamento);
+        View.inserirTipoLancamento(descricao);
     }
 
-    public static void listarTiposLancamentos(CRUD<TipoLancamento> tiposLancamentos) {
-        List<TipoLancamento> listaTiposLancamentos = tiposLancamentos.listar();
-        for (TipoLancamento tp : listaTiposLancamentos) {
-            System.out.println(tp.toString());
-        }
+    public static void listarTipoLancamento() {
+        View.listarTipoLancamento();
     }
 
-    public static void main( String[] args )
-    {
-        CRUD<Cliente> clientes = new CRUD<>(Cliente.class);
-        CRUD<Cartao> cartoes = new CRUD<>(Cartao.class);
-        CRUD<TipoLancamento> tiposLancamentos = new CRUD<>(TipoLancamento.class);
+    public static void atualizarTipoLancamento(Scanner scanner) {
+        System.out.print("Digite o ID do tipo que deseja atualizar: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Digite a nova descrição do tipo de lançamento: ");
+        int descricao = scanner.nextLine();
+        View.atualizarTipoLancamento(id, descricao);
+    }
+
+    
+
+    public static void main(String[] args) {
+        System.out.println("BEM-VINDO, ADMIN!\n");
         Scanner scanner = new Scanner(System.in);
         boolean run = true;   
         while (run) {
-        int op = menu(scanner);
+            switch (menu(scanner)) {
+                case 1:
+                    inserirCliente(scanner);
+                    break;
+                case 2:
+                    listarClientes(scanner);
+                case 3:
+                    atualizarCliente(scanner);
+                    break;
+                case 4:
+                    deletarCliente(scanner);
+                    break;
+                case 5:
+                    inserirTipoLancamento(scanner);
 
-        switch (op) {
-            case 1:
-                inserirCliente(scanner, clientes);
-                break;
-            case 2:
-                listarClientes(clientes);
-                break;
-            case 3:
-                inserirCartao(scanner, cartoes);
-                break;
-            case 4:
-                listarCartoes(cartoes);
-                break;
-            case 5:
-                inserirTipoLancamento(scanner, tiposLancamentos);
-                break;
-            case 6:
-                listarTiposLancamentos(tiposLancamentos);
-                break;
-            case 7:
-                System.out.print("FIM DE EXECUÇÃO");
-                run = false;
-                break;
-            default:
-                System.out.println("Opção inválida.\n");
-                break;
+                default:
+                    System.out.println("FIM DE EXECUÇÃO");
+                    run = false;
+                    break;
             }
         }
 
