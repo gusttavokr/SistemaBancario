@@ -22,6 +22,11 @@ class tipoLançamento:
         else:
             raise ValueError("Descrição inválida")
 
+    def to_json(self):
+        dic = {}
+        dic["id"] = self.getId()
+        dic["descrição"] = self.getDescrição()
+
     def __str__(self):
         return f"ID = {self.getId()} - Descrição = {self.getDescrição()}"
     
@@ -33,7 +38,10 @@ class tiposLançamentos(Modelo):
             with open("Sistema/Json/tiposLancamentos.json", mode = "r") as arquivo:
                 objetos = json.dump(arquivo)
                 for obj in objetos:
-                    tiposL = tipoLançamento(obj["_tipoLançamento_id"], obj["_tipoLançamento_descrição"])
+                    tiposL = tipoLançamento(
+                        obj["id"],
+                        obj["descrição"]
+                    )
                     cls.objetos.append(tiposL)
         except FileNotFoundError:
             pass

@@ -40,6 +40,14 @@ class Conta:
         else:
             raise ValueError('Id do cliente inválido')
 
+    def to_json(self):
+        dic = {}
+        dic["id"] = self.getId()
+        dic["idCliente"] = self.getIdCliente()
+        dic["numero"] = self.getNumero()
+        dic["saldo"] = self.getSaldo()
+
+        return dic
 
     def __str__(self):
         return f"Id = {self.getId()} - IdCliente = {self.getIdCliente()} - Número = {self.getNumero()} - Saldo = {self.getSaldo()}"
@@ -52,7 +60,12 @@ class Contas(Modelo):
             with open("Sistema/Json/contas.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
-                    c = Conta(obj["_Conta_id"], obj["_Conta_idCliente"], obj["_Conta_numero"], obj["_Conta_saldo"])
+                    c = Conta(
+                        obj["id"],
+                        obj["idCliente"],
+                        obj["numero"],
+                        obj["saldo"]
+                    )
                     cls.objetos.append(c)
         except FileNotFoundError:
             pass

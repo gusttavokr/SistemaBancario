@@ -46,6 +46,16 @@ class Pedido:
     def setAprovação(self, aprovação):
         self.__aprovação = aprovação        
 
+    def to_json(self):
+        dic = {}
+        dic["id"] = self.getId()
+        dic["id_cliente"] = self.getIdCliente()
+        dic["id_conta"] = self.getIdConta()
+        dic["id_cartão"] = self.getIdCartão()
+        dic["aprovação"] = self.getAprovação()
+
+        return dic
+
     def __str__(self):
         return f"ID = {self.getId()} - idCliente = {self.getIdCliente()} - idConta = {self.getIdConta()} - idCartão = {self.getIdCartão()} - Aprovação = {self.getAprovação()}"
     
@@ -57,7 +67,13 @@ class Pedidos(Modelo):
             with open("Sistema/Json/pedidosCartao.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
-                    p = Pedido(obj["_Pedido_id"], obj["_Pedido_idCliente"], obj["_Pedido_idConta"], obj["_Pedido_idCartão"], obj["_Pedido_aprovação"])
+                    p = Pedido(
+                        obj["id"],
+                        obj["id_cliente"],
+                        obj["id_conta"],
+                        obj["id_cartão"],
+                        obj["aprovação"]
+                    )
                     cls.objetos.append(p)
         except FileNotFoundError:
             pass

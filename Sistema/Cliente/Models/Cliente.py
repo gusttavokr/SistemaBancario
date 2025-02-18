@@ -26,17 +26,26 @@ class Cliente:
     def getNome(self):
         return self.__nome
     def setNome(self, nome):
-        self.__nome = nome
+        if len(nome) > 0:
+            self.__nome = nome
+        else:
+            raise ValueError('Nome inválido')
     
     def getCPF(self):
         return self.__cpf
     def setCPF(self, cpf):
-        self.__cpf = cpf
+        if len(cpf) > 0:
+            self.__cpf = cpf
+        else:
+            raise ValueError('CPF inválido')
 
     def getTelefone(self):
         return self.__telefone
     def setTelefone(self, telefone):
-        self.__telefone = telefone
+        if len(telefone) > 0:
+            self.__telefone = telefone
+        else:
+            raise ValueError('Telefone inválido')
     
     def getIdade(self):
         return self.__idade
