@@ -24,9 +24,11 @@ public class App {
         System.out.print("Digite a idade do cliente: ");
         int idade = scanner.nextInt();
         scanner.nextLine();
-        System.out.print("Digite o número da conta: ");
-        String numeroConta = scanner.nextLine();
-        View.inserirCliente(nome, cpf, telefone, idade, numeroConta);
+        System.out.print("Digite um e-mail para o cliente: ");
+        String email = scanner.nextLine();
+        System.out.print("Digite uma senha para o cliente: ");
+        String senha = scanner.nextLine();
+        View.inserirCliente(nome, cpf, telefone, idade, email, senha);
     }
 
     public static void listarClientes() {
@@ -46,7 +48,11 @@ public class App {
         System.out.print("Digite a nova idade do cliente: ");
         int idade = scanner.nextInt();
         scanner.nextLine();
-        View.atualizarCliente(id, nome, cpf, telefone, idade); }
+        System.out.print("Digite o novo email do cliente: ");
+        String email = scanner.nextLine();
+        System.out.print("Digite a nova senha do cliente: ");
+        String senha = scanner.nextLine();
+        View.atualizarCliente(id, nome, cpf, telefone, idade, email, senha); }
 
     public static void deletarCliente(Scanner scanner) {
         System.out.print("Digite o ID do cliente desejado: ");
@@ -83,7 +89,16 @@ public class App {
             System.out.println("Digite 1 para aprovar ou 0 para reprovar: ");
             int op = scanner.nextInt();
             scanner.nextLine();
-            View.analisarPedidosCartao(id, op);
+            if (op == 1) {
+                System.out.print("Digite o limite do cartão(se o cartão for de débito apenas digite 0): ");
+                Double limite = nextDouble();
+                scanner.nextLine();
+                System.out.print("Digite a validade(MM/AA): ");
+                String validade = scanner.nextLine();
+                View.analisarPedidosCartao(id, op, limite, validade);
+            } else {
+                View.analisarPedidosCartao(id, op, 0, "00/00");
+            }
         }
     }
 

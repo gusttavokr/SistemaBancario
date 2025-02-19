@@ -9,13 +9,18 @@ import models.CRUD;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class View {
 
-    public static void inserirCliente(String nome, String cpf, String telefone, int idade, String numeroConta) {
-        Cliente cliente = new Cliente(0, nome, cpf, telefone, idade);
+    public static void inserirCliente(String nome, String cpf, String telefone, int idade, String email, String senha) {
+        Cliente cliente = new Cliente(0, nome, cpf, telefone, idade, email, senha);
         CRUD<Cliente> clientes = new CRUD<>(Cliente.class);
         clientes.inserir(cliente);
+        // gerar numero aleatorio de 8 digitos e converter pra str -> 10000000, 99999999
+        Random random = new Random();
+        int n = random.nextInt((99999999 - 10000000) + 1) + 10000000;
+        String numero = String.valueOf(n);
         Conta conta = new Conta(0, cliente.getId(), numero, 0);
         CRUD<Conta> contas = new CRUD<>(Conta.class);
         contas.inserir(conta);
@@ -33,8 +38,8 @@ public class View {
         }
     } 
 
-    public static void atualizarCliente(int id, String nome, String cpf, String telefone, int idade) {
-        Cliente cliente = new Cliente(id, nome, cpf, telefone, idade);
+    public static void atualizarCliente(int id, String nome, String cpf, String telefone, int idade, String email, String senha) {
+        Cliente cliente = new Cliente(id, nome, cpf, telefone, idade, email, senha);
         CRUD<Cliente> clientes = new CRUD<>(Cliente.class);
         boolean idFound = clientes.atualizar(id, cliente);
         if (idFound) {
@@ -121,7 +126,55 @@ public class View {
 
         }
     }
-    public static void analisarPedidosCartao(int id, int op) {
+
+    public static String gerarNumCartao() {
+        Random random = new Random();
+        StringBuilder numeroCartao = new StringBuilder();
+
+        for (int i = 0; i < 15; i++) {
+            numeroCartao.append(random.nextInt(10));
+        }
+
+        return numeroCartao;
+    }
+
+    public static String gerarSenhaCartao() {
+        Random random = new Random();
+        StringBuilder senhaCartao = new StringBuilder();
+
+        for (int i = 0; i < 4; i++) {
+            senhaCartao.append(random.nextInt(10));
+        }
+
+        return senhaCartao;
+    }
+
+    public static void criarCartao(PedidoCartao pedido, Double limite, String validade) {
+        CRUD<Cartao> cartoes = new CRUD<>(Cartao.class);
+        if (pedido.getTipoCartao().equals("DEBITO")) {
+            CRUD<Conta> contas = new CRUD<>(Conta.class);
+            List<Conta> listaObjetos = contas.listar();
+            for (Conta c : listaObjetos) {
+                if (c.getId() == pedido.getIdConta()) {
+                    limite = c.getSaldo(); // se o cartão solicitado for de debito, o limite vai ser o saldo da conta
+                    break;
+                }
+            }
+            String numero = gerarNumCartao();
+            String senha = gerarSenhaCartao();
+            Cartao cartao = new Cartao(0, pedido.getIdConta(), true, false, limite, validade, numero, senha);
+            cartoes.inserir(cartao);
+            System.out.println("CARTÃO CRIADO E ASSOCIADO À CONTA DO CLIENTE");
+        } else if (peido.getTipoCartao().equals("CREDITO")) {
+            String numero = gerarNumCartao();
+            String senha = gerarSenhaCartao();
+            Cartao cartao = new Cartao(0, pedido.getIdConta(), false, true, limite, validade, numero, senha);
+            cartoes.inserir(cartao);
+            System.out.println("CARTÃO CRIADO E ASSOCIADO À CONTA DO CLIENTE");           
+        }
+    }
+
+    public static void analisarPedidosCartao(int id, int op, Double limiteCartao, String validadeCartao) {
         CRUD<PedidoCartao> pedidos = new CRUD<>(PedidoCartao.class);
         List<PedidoCartao> listaObjetos = pedidos.listar();
         for (PedidoCartao pc : listaObjetos) {
@@ -129,7 +182,7 @@ public class View {
                 if (op == 1) { 
                     pc.setAprovacao(true); 
                     // cria o cartão
-                    
+                    criarCartao(pc, limiteCartao, validadeCartao);
                 }
                 else if (op != 0) { 
                     System.out.println("OPÇÃO INVÁLIDA"); 
@@ -137,6 +190,7 @@ public class View {
                 }
                 // exclui o pedido apos aprovação ou reprovação
                 listaObjetos.deletar(pc.getId());
+                System.out.println("PEDIDO DELETADO");
                 return;
             }
         }
@@ -168,3 +222,25 @@ public class View {
         }
     }
 }
+
+
+/* 
+O QUE EU FIZ (19/02 - 15:44):
+
+ATUALIZEI CLIENTE(EMAIL E SENHA)
+CRIEI UM GERADOR DE NUMERO DE CONTA ALEATORIO 
+CRIEI FUNÇÃO PARA CRIAR O CARTÃO EM CASO DE APROVAÇÃO DO ADM E ATUALIZEI A UI PARA PEGAR O LIMITE E A VALIDADE DO CARTÃO
+CRIEI FUNÇÕES PARA GERAR NUMEROS DE CARTÃO E SENHA DE CARTÃO ALEATÓRIOS
+ADICIONEI O CARTÃO CRIADO NA LISTA DE CARTÕES ASSOCIADA À SUPERCLASSE CRUD
+
+FALTA FAZER:
+
+LISTAR CARTÕES (UI E VIEW)
+ATUALIZAR CARTÃO (UI E VIEW)
+DELETAR CARTÃO (UI E VIEW)
+PERSISTẼNCIA CONTAS (FAZER CLASSE A ATUALIZAR MÉTODO DA SUPERCLASSE)
+PERSISTÊNCIA LANÇAMENTOS (FAZER CLASSE A ATUALIZAR MÉTODO DA SUPERCLASSE)
+PERSISTÊNCIA PEDIDOS CARTÕES (FAZER CLASSE A ATUALIZAR MÉTODO DA SUPERCLASSE)
+LOGIN ADM
+
+*/

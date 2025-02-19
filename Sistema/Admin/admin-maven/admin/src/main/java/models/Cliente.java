@@ -6,19 +6,23 @@ public class Cliente implements VerificaId{
     private String cpf;
     private String telefone;
     private int idade;
+    private String email;
+    private String senha;
     private boolean admin;
 
     public Cliente() {
         // Construtor sem parâmetros para o Gson
     }
     
-    public Cliente(int id, String nome, String cpf, String telefone, int idade) {
+    public Cliente(int id, String nome, String cpf, String telefone, int idade, String email, String senha) {
         super();
         this.setId(id);
         this.setNome(nome);
         this.setCpf(cpf);
         this.setTelefone(telefone);
         this.setIdade(idade);
+        this.setEmail(email);
+        this.setSenha(senha);
         this.setAdmin(false);
     }
 
@@ -62,6 +66,22 @@ public class Cliente implements VerificaId{
         }
     }
 
+    public void setEmail(String email) {
+        if (!(email.isEmpty())) {
+            this.email = email;
+        } else {
+            throw new IllegalArgumentException("INVALID EMAIL");
+        }
+    }
+
+    public void setSenha(String senha) {
+        if (!(senha.isEmpty())) {
+            this.senha = senha;
+        } else {
+            throw new IllegalArgumentException("INVALID PASSWORD");
+        }
+    }
+
     public void setAdmin(boolean admin) {
         this.admin = admin;
     }
@@ -84,12 +104,20 @@ public class Cliente implements VerificaId{
         return this.idade;
     }
 
+    public String getEmail() {
+        return this.email;
+    }
+
+    public String getSenha() {
+        return this.senha;
+    }
+
     public boolean getAdmin() {
         return this.admin;
     }
 
     public String toString() {
-        return String.format("Nome: %s - CPF: %s - Telefone: %s - Idade: %d", this.getNome(), this.getCpf(), this.getTelefone(), this.getIdade());
+        return String.format("Nome: %s - CPF: %s - Telefone: %s - Idade: %d - E-mail: %s - Senha: %s", this.getNome(), this.getCpf(), this.getTelefone(), this.getIdade(), this.getEmail(), this.getSenha());
     }
 
 }
