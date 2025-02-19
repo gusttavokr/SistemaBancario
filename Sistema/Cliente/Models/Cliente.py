@@ -2,13 +2,13 @@ import json
 from Models.Modelo import Modelo
 
 class Cliente:
-    def __init__(self, id, nome, cpf, telefone, idade, admin):
+    def __init__(self, id, nome, cpf, telefone, idade):
         self.__id = id
         self.__nome = nome
         self.__cpf = cpf
         self.__telefone = telefone
         self.__idade = idade
-        self.__admin = admin
+        self.__admin = False
 
     def getId(self):
         return self.__id
@@ -66,7 +66,7 @@ class Cliente:
         dic["cpf"] = self.getCPF()
         dic["telefone"] = self.getTelefone()
         dic["idade"] = self.getIdade()
-        dic["admin"] = self.getAdmin()
+        #dic["admin"] = self.getAdmin()
         return dic
 
 class Clientes(Modelo):
@@ -86,8 +86,8 @@ class Clientes(Modelo):
                         obj["nome"],
                         obj["cpf"],
                         obj["telefone"],
-                        obj["idade"],
-                        obj["admin"]
+                        obj["idade"]
+                        #obj["admin"]
                     )
                     cls.objetos.append(u)
         except FileNotFoundError:

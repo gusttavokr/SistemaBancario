@@ -2,12 +2,12 @@ import json
 from Models.Modelo import Modelo
 
 class Pedido:
-    def __init__(self, id, id_cliente, id_conta, id_cartão, aprovação):
+    def __init__(self, id, id_cliente, id_conta, tipoCartao):
         self.__id = id
         self.__idCliente = id_cliente
         self.__idConta = id_conta
-        self.__idCartão = id_cartão
-        self.__aprovação = aprovação
+        self.__tipoCartao = tipoCartao
+        self.__aprovação = False
 
     def getId(self):
         return self.__id
@@ -33,13 +33,13 @@ class Pedido:
         else:
             raise ValueError('Id da conta inválido')
 
-    def getIdCartão(self):
-        return self.__idCartão
-    def setIdCartão(self, id_cartão):
-        if len(str(id_cartão)) > 0:
-            self.__idCartão = id_cartão
+    def gettipoCartão(self):
+        return self.__tipoCartao
+    def settipoCartão(self, tipoCartao):
+        if len(str(tipoCartao)) > 0:
+            self.__tipoCartao = tipoCartao
         else:
-            raise ValueError('Id do cartão inválido')
+            raise ValueError('Tipo do cartão inválido')
 
     def getAprovação(self):
         return self.__aprovação
@@ -51,7 +51,7 @@ class Pedido:
         dic["id"] = self.getId()
         dic["id_cliente"] = self.getIdCliente()
         dic["id_conta"] = self.getIdConta()
-        dic["id_cartão"] = self.getIdCartão()
+        dic["tipoCartão"] = self.gettipoCartão()
         dic["aprovação"] = self.getAprovação()
 
         return dic
@@ -71,7 +71,7 @@ class Pedidos(Modelo):
                         obj["id"],
                         obj["id_cliente"],
                         obj["id_conta"],
-                        obj["id_cartão"],
+                        obj["tipoCartão"],
                         obj["aprovação"]
                     )
                     cls.objetos.append(p)
