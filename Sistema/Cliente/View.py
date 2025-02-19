@@ -9,7 +9,6 @@ from Models.tipoLançamento import tipoLançamento, tiposLançamentos
 
 class View:
 
-
     # COISAS A VER:
     # - CLIENTE PRECISA DE SENHA COMO PARÂMETRO
     # - COMO CLIENTE VAI CRIAR UMA CONTA AO CRIAR UM CLIENTE
@@ -34,13 +33,13 @@ class View:
         Contas.inserir(conta)
 
     @staticmethod
-    def atualizarCliente(id, nome, cpf, telefone, idade):
+    def atualizarCliente(id, nome, email, cpf, senha, telefone, idade):
         for c in Clientes.listar():
             if c.getCPF() == cpf:
                 raise ValueError('CPF já existente')
         if nome == "" or cpf == "":
             raise ValueError("Nome ou CPF vazios")
-        cliente = Cliente(id, nome, cpf, telefone, idade)
+        cliente = Cliente(id, nome, email, cpf, senha, telefone, idade)
         Clientes.atualizar(cliente)
     
 
