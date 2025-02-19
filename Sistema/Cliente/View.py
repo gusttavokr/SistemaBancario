@@ -68,6 +68,18 @@ class View:
     def excluirPedido(id):
         Pedidos.excluir(Pedidos.listar(id))
 
+
+    # CARTÕES
+    @staticmethod
+    def listarCartões(idConta):
+        for c in Cartões.listar():
+            if c.getIdConta() == idConta:
+                return c
+            else:
+                raise ValueError("Você não tem nenhum cartão")
+
+
+
     # LANÇAMENTOS
     @staticmethod
     def inserirLançamento(id, idTipoLançamento, numeroContaOrigem, numeroContaDestino, valor):
@@ -86,3 +98,4 @@ class View:
                 return L
             else:
                 raise ValueError("Nenhum lançamento feito!")
+
