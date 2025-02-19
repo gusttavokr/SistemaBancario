@@ -12,7 +12,13 @@ class View:
     # COISAS A VER:
     # - CLIENTE PRECISA DE SENHA COMO PARÂMETRO
     # - COMO CLIENTE VAI CRIAR UMA CONTA AO CRIAR UM CLIENTE
-
+    
+    @staticmethod
+    def cliente_autenticar(email, senha):
+        for c in Clientes.listar():
+            if c.getEmail() == email and c.getSenha() == senha:
+                return { "id" : c.getId(), "nome" : c.getNome() }
+        return None
 
     @staticmethod
     def inserirCliente(nome, email, cpf, senha, telefone, idade):
