@@ -6,12 +6,91 @@ import java.util.Scanner;
 
 
 public class App {
-    public static int menu(Scanner scanner) {
-        System.out.println("1-Inserir Cliente\n2-Listar Clientes\n3-Atualizar Cliente\n4-Deletar Cliente\n5-Inserir Tipo de Lançamento\n6-Listar Tipos de Lançamentos\n7-Atualizar Tipo de Lançamento\n8-Deletar Tipo de Lançamento\n9-Analisar Pedido de Cartão\n10-Listar Cartões\n11-Atualizar Cartão\n12-Deletar Cartão\n13-Listar Contas\n14-Listar Lançamentos");
-        System.out.print("Digite a opção desejada: ");
-        int op = scanner.nextInt();
-        scanner.nextLine();
-        return op;
+
+    public static int menuVisitante(Scanner scanner) {
+        while(true) {
+            System.out.println("1-Entrar no Sistema\n2-Cadastrar Conta\n3-Sair");
+            System.out.print("Digite a opção desejada: ");
+            int op = scanner.nextInt();
+            scanner.nextLine();
+            switch(op) {
+                case 1:
+                    System.out.print("Digite seu e-mail: ");
+                    String email = scanner.nextLine();
+                    System.out.print("Digite sua senha: ");
+                    String senha = scanner.nextLine();
+                    int idConta = View.entrarNoSistema(email, senha);
+                    if (idConta == -1) { System.out.println("E-MAIL OU SENHA INVÁLIDOS"); }
+                    else { return idConta; }
+                    break;
+                case 2:
+                    inserirCliente(scanner);
+                    System.out.println("CLIENTE CADASTRADO COM SUCESSO");
+                    break;
+                case 3:
+                    System.out.println("FIM DE EXECUÇÃO");
+                    System.exit(0);
+                default:
+                    System.out.println("OPÇÃO INVÁLIDA");
+                    break;
+            }
+        }
+    }
+    public static int menuAdmin(Scanner scanner) {
+        while (true) {
+            System.out.println("1-Inserir Cliente\n2-Listar Clientes\n3-Atualizar Cliente\n4-Deletar Cliente\n5-Inserir Tipo de Lançamento\n6-Listar Tipos de Lançamentos\n7-Atualizar Tipo de Lançamento\n8-Deletar Tipo de Lançamento\n9-Analisar Pedido de Cartão\n10-Listar Cartões\n11-Atualizar Cartão\n12-Deletar Cartão\n13-Listar Contas\n14-Listar Lançamentos");
+            System.out.print("Digite a opção desejada: ");
+            int op = scanner.nextInt();
+            scanner.nextLine();
+            switch (op) {
+                case 1:
+                    inserirCliente(scanner);
+                    break;
+                case 2:
+                    listarClientes(scanner);
+                case 3:
+                    atualizarCliente(scanner);
+                    break;
+                case 4:
+                    deletarCliente(scanner);
+                    break;
+                case 5:
+                    inserirTipoLancamento(scanner);
+                    break;
+                case 6:
+                    listarTiposLancamentos(scanner);
+                    break;
+                case 7:
+                    atualizarTipoLancamento(scanner);
+                    break;
+                case 8:
+                    deletarTipoLancamento(scanner);
+                    break;
+                case 9:
+                    analisarPedidosCartao(scanner); // criar PedidosCartao com abrir e salvar
+                    break;
+                case 10:
+                    listarCartoes(); // fazer view e ui
+                    break;
+                case 11:
+                    atualizarCartao(scanner); // fazer view e ui
+                    break;
+                case 12:
+                    deletarCartao(scanner); // fazer view e ui
+                case 13:
+                    listarContas(); // criar Contas com salvar e abrir
+                    break;
+                case 14:
+                    listarLancamentos(); // criar Lancamentos com salvar e abrir
+                    break;
+                case 15:
+                    System.out.println("FIM DE DE EXECUÇÃO");
+                    System.exit(0);
+                default:
+                    System.out.println("OPÇÃO INVÁLIDA");
+                    break;
+            }
+        }
     }
 
     public static void inserirCliente(Scanner scanner) {
@@ -113,62 +192,13 @@ public class App {
 
     public static void main(String[] args) {
         
-        System.out.println("BEM-VINDO, ADMIN!\n");
         Scanner scanner = new Scanner(System.in);
-        boolean run = true;   
-        while (run) {
-            switch (menu(scanner)) {
-                case 1:
-                    inserirCliente(scanner);
-                    break;
-                case 2:
-                    listarClientes(scanner);
-                case 3:
-                    atualizarCliente(scanner);
-                    break;
-                case 4:
-                    deletarCliente(scanner);
-                    break;
-                case 5:
-                    inserirTipoLancamento(scanner);
-                    break;
-                case 6:
-                    listarTiposLancamentos(scanner);
-                    break;
-                case 7:
-                    atualizarTipoLancamento(scanner);
-                    break;
-                case 8:
-                    deletarTipoLancamento(scanner);
-                    break;
-                case 9:
-                    analisarPedidosCartao(scanner); // criar PedidosCartao com abrir e salvar
-                    break;
-                case 10:
-                    listarCartoes(); // fazer view e ui
-                    break;
-                case 11:
-                    atualizarCartao(scanner); // fazer view e ui
-                    break;
-                case 12:
-                    deletarCartao(scanner); // fazer view e ui
-                case 13:
-                    listarContas(); // criar Contas com salvar e abrir
-                    break;
-                case 14:
-                    listarLancamentos(); // criar Lancamentos com salvar e abrir
-                    break;
-                case 15:
-                    System.out.println("FIM DE DE EXECUÇÃO");
-                    run = false;
-                    break;
-                default:
-                    System.out.println("OPÇÃO INVÁLIDA");
-                    break;
-            }
+        int idConta = menuVisitante(scanner); 
+        if (idConta == 0) {
+            menuAdmin();
+        } else {
+            System.out.priintln("*MENU DO CLIENTE*");
         }
-
-
         scanner.close();
     }
 }
