@@ -19,9 +19,11 @@ public class View {
         clientes.inserir(cliente);
         // gerar numero aleatorio de 8 digitos e converter pra str -> 10000000, 99999999
         Random random = new Random();
-        int n = random.nextInt((99999999 - 10000000) + 1) + 10000000;
-        String numero = String.valueOf(n);
-        Conta conta = new Conta(0, cliente.getId(), numero, 0);
+        StringBuilder numero = new Stringbuilder();
+        for (int i = 0; i < 8; i++) {
+            numero.append(random.nextInt(10));
+        }
+        Conta conta = new Conta(0, cliente.getId(), numero.toString(), 0);
         CRUD<Conta> contas = new CRUD<>(Conta.class);
         contas.inserir(conta);
     }
@@ -135,7 +137,7 @@ public class View {
             numeroCartao.append(random.nextInt(10));
         }
 
-        return numeroCartao;
+        return numeroCartao.toString();
     }
 
     public static String gerarSenhaCartao() {
@@ -146,7 +148,7 @@ public class View {
             senhaCartao.append(random.nextInt(10));
         }
 
-        return senhaCartao;
+        return senhaCartao.toString();
     }
 
     public static void criarCartao(PedidoCartao pedido, Double limite, String validade) {
