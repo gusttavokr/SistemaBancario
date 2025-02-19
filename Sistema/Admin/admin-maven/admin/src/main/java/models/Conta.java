@@ -2,7 +2,7 @@ package models;
 
 import java.util.Arrays;
 
-public class Conta {
+public class Conta implements VerificaId {
     private int id;
     private int idCliente;
     private String numero;
