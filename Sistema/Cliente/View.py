@@ -1,4 +1,5 @@
 from Models.Cliente import Cliente, Clientes
+from random import randint
 
 from Models.Cartão import Cartão, Cartões
 from Models.Conta import Conta, Contas
@@ -24,7 +25,13 @@ class View:
         
         cliente = Cliente(0, nome, email, cpf, senha, telefone, idade, False)
         Clientes.inserir(cliente)
-        conta = Conta(0, cliente.getId(), numero, )
+        
+        
+        numero = randint(10000000, 99999999)
+        numero = str(numero)
+
+        conta = Conta(0, cliente.getId(), numero, 0)
+        Contas.inserir(conta)
 
     @staticmethod
     def atualizarCliente(id, nome, cpf, telefone, idade):
