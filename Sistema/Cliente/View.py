@@ -15,15 +15,16 @@ class View:
 
 
     @staticmethod
-    def inserirCliente(id, nome, cpf, telefone, idade, admin):
+    def inserirCliente(nome, email, cpf, senha, telefone, idade):
         for c in Clientes.listar():
             if c.getCPF() == cpf:
                 raise ValueError("Cliente já existente")
-        if nome == "" or idade < 18 or cpf == "" or telefone == "":
+        if nome == "" or idade < 18 or cpf == "" or email == "" or senha == "":
             raise ValueError("Cliente inválido")
         
-        cliente = Cliente(0, nome, cpf, telefone, idade, False)
+        cliente = Cliente(0, nome, email, cpf, senha, telefone, idade, False)
         Clientes.inserir(cliente)
+        conta = Conta(0, cliente.getId(), numero, )
 
     @staticmethod
     def atualizarCliente(id, nome, cpf, telefone, idade):

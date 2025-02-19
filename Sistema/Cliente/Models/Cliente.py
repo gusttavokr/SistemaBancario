@@ -2,10 +2,12 @@ import json
 from Models.Modelo import Modelo
 
 class Cliente:
-    def __init__(self, id, nome, cpf, telefone, idade):
+    def __init__(self, id, nome, email, cpf, senha, telefone, idade):
         self.__id = id
         self.__nome = nome
+        self.__email = email
         self.__cpf = cpf
+        self.__senha = senha
         self.__telefone = telefone
         self.__idade = idade
         self.__admin = False
@@ -30,6 +32,22 @@ class Cliente:
             self.__nome = nome
         else:
             raise ValueError('Nome inválido')
+
+    def getEmail(self):
+        return self.__email
+    def setEmail(self, email):
+        if email != "":
+            self.__email = email
+        else:
+            raise ValueError("Email inválido")
+
+    def getSenha(self):
+        return self.__senha
+    def setSenha(self, senha):
+        if senha != "":
+            self.__senha = senha
+        else:
+            raise ValueError("Senha inválida")
     
     def getCPF(self):
         return self.__cpf
@@ -63,10 +81,12 @@ class Cliente:
         dic = {}
         dic["id"] = self.getId()
         dic["nome"] = self.getNome()
+        dic["email"] = self.getEmail()
         dic["cpf"] = self.getCPF()
+        dic["senha"] = self.getSenha()
         dic["telefone"] = self.getTelefone()
         dic["idade"] = self.getIdade()
-        #dic["admin"] = self.getAdmin()
+        dic["admin"] = self.getAdmin()
         return dic
 
 class Clientes(Modelo):
@@ -84,10 +104,12 @@ class Clientes(Modelo):
                     u = Cliente(
                         obj["id"],
                         obj["nome"],
+                        obj["email"],
                         obj["cpf"],
+                        obj["senha"],
                         obj["telefone"],
-                        obj["idade"]
-                        #obj["admin"]
+                        obj["idade"],
+                        obj["admin"]
                     )
                     cls.objetos.append(u)
         except FileNotFoundError:
