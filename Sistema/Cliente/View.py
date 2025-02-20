@@ -39,35 +39,35 @@ class View:
         Contas.inserir(conta)
 
     @staticmethod
-    def atualizarCliente(id, nome, email, cpf, senha, telefone, idade):
+    def atualizarCliente(nome, email, cpf, senha, telefone, idade):
         for c in Clientes.listar():
             if c.getCPF() == cpf:
                 raise ValueError('CPF já existente')
         if nome == "" or cpf == "":
             raise ValueError("Nome ou CPF vazios")
-        cliente = Cliente(id, nome, email, cpf, senha, telefone, idade)
+        cliente = Cliente(c.getId(), nome, email, cpf, senha, telefone, idade, False)
         Clientes.atualizar(cliente)
     
 
     # PEDIDOS CARTÕES
     @staticmethod
-    def inserirPedido(id, idCliente, idConta, tipoCartão):
-        for p in Pedidos.listar():
-            if p.getId() == id and p.getIdCliente() == idCliente:
-                raise ValueError("Pedido já feito!")
-        if tipoCartão == "":
-            raise ValueError("Tipo do cartão inválido")
+    def inserirPedido(cliente_id, tipoCartão):
+        x = None
+        print(Contas.listar())
+        for i in Contas.listar():
+            if i.getIdCliente() == cliente_id:
+                x = i.getId()
+        if x == None:
+            raise ValueError("aaaaaaaaaaa")
         
-        Ped = Pedido(id, idCliente, idConta, tipoCartão)
-        Pedidos.inserir(Ped)
+        pedido = Pedido(0, cliente_id, x, tipoCartão)
+        Pedidos.inserir(pedido)
+
+
 
     @staticmethod
-    def listarPedidos(idCliente, idConta):
-        for p in Pedidos.listar():
-            if p.getIdCliente() == idCliente and p.getIdConta() == idConta:
-                return p
-            else:
-                raise ValueError("Nenhum pedido feito!")
+    def listarPedidos():
+        return Pedidos.listar()
 
     @staticmethod
     def excluirPedido(id):

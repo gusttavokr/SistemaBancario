@@ -82,4 +82,4 @@ class Pedidos(Modelo):
     @classmethod
     def salvar(cls):
         with open("Sistema/Json/pedidosCartao.json", mode="w") as arquivo:
-            json.dump(cls.objetos, arquivo, default =vars)
+            json.dump(cls.objetos, arquivo, default=lambda o: o.to_json(), indent=4)

@@ -2,7 +2,7 @@ import json
 from Models.Modelo import Modelo
 
 class Cliente:
-    def __init__(self, id, nome, email, cpf, senha, telefone, idade):
+    def __init__(self, id, nome, email, cpf, senha, telefone, idade, admin = False):
         self.__id = id
         self.__nome = nome
         self.__email = email
@@ -10,7 +10,7 @@ class Cliente:
         self.__senha = senha
         self.__telefone = telefone
         self.__idade = idade
-        self.__admin = False
+        self.__admin = admin
 
     def getId(self):
         return self.__id

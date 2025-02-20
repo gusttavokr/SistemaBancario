@@ -28,7 +28,7 @@ class Modelo(ABC):
         return cls.objetos
 
     @classmethod
-    def listarId(cls):
+    def listarId(cls, id: int):
         cls.abrir()
         for i in cls.objetos:
             if i.getId() == id:

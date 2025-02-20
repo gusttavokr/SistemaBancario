@@ -40,6 +40,8 @@ class Conta:
         else:
             raise ValueError('Id do cliente inválido')
 
+    def __str__(self):
+        return f"Id = {self.getId()} - IdCliente = {self.getIdCliente()} - Número = {self.getNumero()} - Saldo = {self.getSaldo()}"
     def to_json(self):
         dic = {}
         dic["id"] = self.getId()
@@ -49,15 +51,13 @@ class Conta:
 
         return dic
 
-    def __str__(self):
-        return f"Id = {self.getId()} - IdCliente = {self.getIdCliente()} - Número = {self.getNumero()} - Saldo = {self.getSaldo()}"
     
 class Contas(Modelo):
     @classmethod
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("Sistema/Json/contas.json", mode="r") as arquivo:
+            with open("Sistema/Json/Contas.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     c = Conta(
@@ -74,4 +74,4 @@ class Contas(Modelo):
     @classmethod
     def salvar(cls):
         with open("Sistema/Json/Contas.json", mode="w") as arquivo:
-            json.dump(cls.objetos, arquivo, default =vars)
+            json.dump(cls.objetos, arquivo, default =lambda o: o.to_json(), indent=4)
