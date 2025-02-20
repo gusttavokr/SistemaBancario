@@ -1,0 +1,12 @@
+[
+  {
+    "id": 0,
+    "nome": "Admin",
+    "cpf": "Admin",
+    "telefone": "Admin",
+    "idade": 18,
+    "email": "Admin",
+    "senha": "Admin",
+    "admin": true
+  }
+]

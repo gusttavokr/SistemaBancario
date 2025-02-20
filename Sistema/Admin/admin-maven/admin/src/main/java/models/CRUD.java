@@ -65,6 +65,12 @@ public class CRUD<TipoObjeto extends VerificaId> {
             Cartoes.salvar((List<Cartao>) (List<?>) listaObjetos); // Cast de forma segura
         } else if (tipoObjeto == TipoLancamento.class) {
             TiposLancamentos.salvar((List<TipoLancamento>) (List<?>) listaObjetos); // Cast de forma segura
+        } else if (tipoObjeto == Conta.class) {
+            Contas.salvar((List<Conta>) (List<?>) listaObjetos);
+        } else if (tipoObjeto == Lancamento.class) {
+            Lancamentos.salvar((List<Lancamento>) (List<?>) listaObjetos);
+        } else if (tipoObjeto == PedidoCartao.class) {
+            PedidosCartao.salvar((List<PedidoCartao>) (List<?>) listaObjetos);
         }
     }
 
@@ -76,6 +82,12 @@ public class CRUD<TipoObjeto extends VerificaId> {
             listaObjetos = (List<TipoObjeto>) (List<?>) Cartoes.abrir(); // Cast de forma segura
         } else if (tipoObjeto == TipoLancamento.class) {
             listaObjetos = (List<TipoObjeto>) (List<?>) TiposLancamentos.abrir(); // Cast de forma segura
+        } else if (tipoObjeto == Conta.class) {
+            listaObjetos = (List<TipoObjeto>) (List<?>) Contas.abrir();
+        } else if (tipoObjeto == Lancamento.class) {
+            listaObjetos = (List<TipoObjeto>) (List<?>) Lancamentos.abrir();
+        } else if (tipoObjeto == PedidoCartao.class) {
+            listaObjetos = (List<TipoObjeto>) (List<?>) PedidosCartao.abrir();
         }
     }
 }

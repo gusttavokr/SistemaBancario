@@ -48,7 +48,7 @@ public class Cartao implements VerificaId {
     }
 
     public void setDebito(boolean debito) {
-        if (!(this.getCredito)) {
+        if (!(this.getCredito())) {
             this.debito = debito;
         } else {
             throw new IllegalArgumentException("THIS CARD ALREADY CREDIT");

@@ -29,7 +29,7 @@ public class App {
                     break;
                 case 3:
                     System.out.println("FIM DE EXECUÇÃO");
-                    System.exit(0);
+                    return -1;
                 default:
                     System.out.println("OPÇÃO INVÁLIDA");
                     break;
@@ -48,7 +48,8 @@ public class App {
                     inserirCliente(scanner);
                     break;
                 case 2:
-                    listarClientes(scanner);
+                    listarClientes();
+                    break;
                 case 3:
                     atualizarCliente(scanner);
                     break;
@@ -59,7 +60,7 @@ public class App {
                     inserirTipoLancamento(scanner);
                     break;
                 case 6:
-                    listarTiposLancamentos(scanner);
+                    listarTiposLancamentos();
                     break;
                 case 7:
                     atualizarTipoLancamento(scanner);
@@ -68,21 +69,22 @@ public class App {
                     deletarTipoLancamento(scanner);
                     break;
                 case 9:
-                    analisarPedidosCartao(scanner); // criar PedidosCartao com abrir e salvar
+                    // analisarPedidosCartao(scanner); // criar PedidosCartao com abrir e salvar
                     break;
                 case 10:
-                    listarCartoes(); // fazer view e ui
+                    // listarCartoes(); // fazer view e ui
                     break;
                 case 11:
-                    atualizarCartao(scanner); // fazer view e ui
+                    // atualizarCartao(scanner); // fazer view e ui
                     break;
                 case 12:
-                    deletarCartao(scanner); // fazer view e ui
+                    // deletarCartao(scanner); // fazer view e ui
+                    break;
                 case 13:
-                    listarContas(); // criar Contas com salvar e abrir
+                    // listarContas(); // criar Contas com salvar e abrir
                     break;
                 case 14:
-                    listarLancamentos(); // criar Lancamentos com salvar e abrir
+                    // listarLancamentos(); // criar Lancamentos com salvar e abrir
                     break;
                 case 15:
                     return true; // logout recebe true caso o usuário deseje sair
@@ -147,7 +149,7 @@ public class App {
     }
 
     public static void listarTiposLancamentos() {
-        View.listarTipoLancamento();
+        View.listarTiposLancamentos();
     }
 
     public static void atualizarTipoLancamento(Scanner scanner) {
@@ -155,8 +157,15 @@ public class App {
         int id = scanner.nextInt();
         scanner.nextLine();
         System.out.print("Digite a nova descrição do tipo de lançamento: ");
-        int descricao = scanner.nextLine();
+        String descricao = scanner.nextLine();
         View.atualizarTipoLancamento(id, descricao);
+    }
+
+    public static void deletarTipoLancamento(Scanner scanner) {
+        System.out.print("Digite o ID do tipo de lançamento desejado: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        View.deletarTipoLancamento(id);
     }
 
     public static void analisarPedidosCartao(Scanner scanner) {
@@ -170,13 +179,13 @@ public class App {
             scanner.nextLine();
             if (op == 1) {
                 System.out.print("Digite o limite do cartão(se o cartão for de débito apenas digite 0): ");
-                Double limite = nextDouble();
+                Double limite = scanner.nextDouble();
                 scanner.nextLine();
                 System.out.print("Digite a validade(MM/AA): ");
                 String validade = scanner.nextLine();
                 View.analisarPedidosCartao(id, op, limite, validade);
             } else {
-                View.analisarPedidosCartao(id, op, 0, "00/00");
+                View.analisarPedidosCartao(id, op, 0.0, "00/00");
             }
         }
     }
@@ -191,20 +200,19 @@ public class App {
     
 
     public static void main(String[] args) {
+        View.criarAdmin();
         Scanner scanner = new Scanner(System.in);
-        while (true) { // Loop principal do programa
-            int idConta = menuVisitante(scanner); // Exibe o menu do visitante
+        while (true) {
+            int idConta = menuVisitante(scanner);
             if (idConta == 0) {
-                // Menu do admin
                 boolean logout = menuAdmin(scanner);
-                if (logout) {
-                    System.out.println("Logout realizado. Voltando ao menu do visitante.");
-                }
+                if (logout) { System.out.println("LOGOUT REALIZADO"); } 
+            } else if (idConta == -1) {
+                break;
             } else {
-                // Menu do cliente (a ser implementado)
                 System.out.println("*MENU DO CLIENTE*");
             }
         }
-        // scanner.close(); // Não é necessário fechar o scanner no loop principal
+        scanner.close();
     }
 }

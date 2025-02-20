@@ -1,9 +1,10 @@
+package view;
+
 import models.Cliente;
 import models.Conta;
 import models.Cartao;
 import models.Lancamento;
 import models.TipoLancamento;
-import models.TiposLancamentos;
 import models.PedidoCartao;
 import models.CRUD;
 
@@ -15,19 +16,25 @@ public class View {
 
     public static void criarAdmin() {
         CRUD<Cliente> clientes = new CRUD<Cliente>(Cliente.class);
-        Cliente admin = new Cliente(0, "Admin", "Admin", "Admin", 18, "Admin", "Admin");
-        admin.setAdmin(true);
-        clientes.inserir(admin);
+        List<Cliente> listaObjetos = clientes.listar();
+        if (listaObjetos.isEmpty()) {
+            Cliente admin = new Cliente(0, "Admin", "Admin", "Admin", 18, "Admin", "Admin");
+            admin.setAdmin(true);
+            clientes.inserir(admin);
+        }
     }
 
     public static int entrarNoSistema(String email, String senha) {
         CRUD<Cliente> clientes = new CRUD<Cliente>(Cliente.class);
         List<Cliente> listaClientes = clientes.listar();
         CRUD<Conta> contas = new CRUD<Conta>(Conta.class);
-        List<Contas> listaContas = contas.listar();
+        List<Conta> listaContas = contas.listar();
         for (Cliente clt : listaClientes) {
-            if (clt.getEmail() == email && clt.getSenha() == senha) {
+            if (clt.getEmail().equals(email) && clt.getSenha().equals(senha)) {
                 System.out.println(String.format("Seja bem-vindo, %s!", clt.getNome()));
+                if (clt.getId() == 0) {
+                    return 0; // o admin não tem conta, então retorna o id do cliente se o login for feito pelo admin
+                }
                 for (Conta cnt : listaContas) {
                     if (clt.getId() == cnt.getIdCliente()) {
                         return cnt.getId(); // id da conta
@@ -44,7 +51,7 @@ public class View {
         clientes.inserir(cliente);
         // gerar numero aleatorio de 8 digitos e converter pra str -> 10000000, 99999999
         Random random = new Random();
-        StringBuilder numero = new Stringbuilder();
+        StringBuilder numero = new StringBuilder();
         for (int i = 0; i < 8; i++) {
             numero.append(random.nextInt(10));
         }
@@ -83,7 +90,7 @@ public class View {
         int idConta = 0;
         for (Conta c : listaContas) {
             if (c.getIdCliente() == id) {
-                if (c.getSaldo()) {
+                if (c.getSaldo() > 0) {
                     System.out.println("CLIENTE POSSUI CONTA COM SALDO POSITIVO, EXCLUSÃO NEGADA");
                     return;
                 }
@@ -130,7 +137,7 @@ public class View {
     }
 
     public static void deletarTipoLancamento(int id) {
-        CRUD<TipoLancamento> tipoLancamentos = new CRUD<>(TipoLancamento.class);
+        CRUD<TipoLancamento> tiposLancamentos = new CRUD<>(TipoLancamento.class);
         boolean idFound = tiposLancamentos.deletar(id);
         if (idFound) {
             System.out.println("TIPO DE LANÇAMENTO DELETADO!");
@@ -192,7 +199,7 @@ public class View {
             Cartao cartao = new Cartao(0, pedido.getIdConta(), true, false, limite, validade, numero, senha);
             cartoes.inserir(cartao);
             System.out.println("CARTÃO CRIADO E ASSOCIADO À CONTA DO CLIENTE");
-        } else if (peido.getTipoCartao().equals("CREDITO")) {
+        } else if (pedido.getTipoCartao().equals("CREDITO")) {
             String numero = gerarNumCartao();
             String senha = gerarSenhaCartao();
             Cartao cartao = new Cartao(0, pedido.getIdConta(), false, true, limite, validade, numero, senha);
@@ -216,7 +223,7 @@ public class View {
                     return;
                 }
                 // exclui o pedido apos aprovação ou reprovação
-                listaObjetos.deletar(pc.getId());
+                pedidos.deletar(pc.getId());
                 System.out.println("PEDIDO DELETADO");
                 return;
             }

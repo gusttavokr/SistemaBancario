@@ -1,6 +1,6 @@
 package models;
 
-public class Cliente implements VerificaId{
+public class Cliente implements VerificaId {
     private int id;
     private String nome;
     private String cpf;

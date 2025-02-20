@@ -1,6 +1,6 @@
 package models;
 
-public class PedidoCartao {
+public class PedidoCartao implements VerificaId {
     private int id;
     private int idCliente;
     private int idConta;

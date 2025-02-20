@@ -1,6 +1,6 @@
 package models;
 
-public class Lancamento {
+public class Lancamento implements VerificaId {
     private int id;
     private int idTipoLancamento;
     private String numeroContaOrigem;

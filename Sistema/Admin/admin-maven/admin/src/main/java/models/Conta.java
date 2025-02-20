@@ -64,6 +64,6 @@ public class Conta implements VerificaId {
     }
 
     public String toString() {
-        return String.format("ID do Cliente: %d - ID dos Cartões: %d - Número: %s - Saldo: R$ %.2f", this.getIdCliente(), Arrays.toString(this.getIdCartao()), this.getNumero(), this.getSaldo());
+        return String.format("ID do Cliente: %d - Número: %s - Saldo: R$ %.2f", this.getIdCliente(), this.getNumero(), this.getSaldo());
     }
 }
