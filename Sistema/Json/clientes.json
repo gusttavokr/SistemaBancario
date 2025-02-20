@@ -8,5 +8,15 @@
     "email": "Admin",
     "senha": "Admin",
     "admin": true
+  },
+  {
+    "id": 1,
+    "nome": "Filho",
+    "cpf": "12345",
+    "telefone": "12345",
+    "idade": 20,
+    "email": "antonio@gmail.com",
+    "senha": "1234",
+    "admin": false
   }
 ]
