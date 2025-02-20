@@ -2,7 +2,7 @@ import json
 from Models.Modelo import Modelo
 
 class Cliente:
-    def __init__(self, id, nome, email, cpf, senha, telefone, idade, admin = False):
+    def __init__(self, id, nome, cpf, telefone, idade, email, senha, admin = False):
         self.__id = id
         self.__nome = nome
         self.__email = email
@@ -81,34 +81,34 @@ class Cliente:
         dic = {}
         dic["id"] = self.getId()
         dic["nome"] = self.getNome()
-        dic["email"] = self.getEmail()
         dic["cpf"] = self.getCPF()
-        dic["senha"] = self.getSenha()
         dic["telefone"] = self.getTelefone()
         dic["idade"] = self.getIdade()
+        dic["email"] = self.getEmail()
+        dic["senha"] = self.getSenha()
         dic["admin"] = self.getAdmin()
         return dic
 
 class Clientes(Modelo):
     @classmethod
     def salvar(cls):
-        with open("Sistema/Json/clientes.json", mode="w") as arquivo:
-            json.dump(cls.objetos, arquivo, default=lambda o: o.to_json(), indent=4)
+        with open("Json/clientes.json", mode="w") as arquivo:
+            json.dump(cls.objetos, arquivo, default=lambda o: o.to_json())
     @classmethod
     def abrir(cls):
         cls.objetos = []
         try:
-            with open ("Sistema/Json/clientes.json", mode="r") as arquivo:
+            with open ("Json/clientes.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     u = Cliente(
                         obj["id"],
                         obj["nome"],
-                        obj["email"],
                         obj["cpf"],
-                        obj["senha"],
                         obj["telefone"],
                         obj["idade"],
+                        obj["email"],
+                        obj["senha"],
                         obj["admin"]
                     )
                     cls.objetos.append(u)

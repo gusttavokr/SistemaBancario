@@ -57,7 +57,7 @@ class Contas(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("Sistema/Json/Contas.json", mode="r") as arquivo:
+            with open("Json/contas.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     c = Conta(
@@ -73,5 +73,5 @@ class Contas(Modelo):
             pass
     @classmethod
     def salvar(cls):
-        with open("Sistema/Json/Contas.json", mode="w") as arquivo:
+        with open("Json/contas.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default =lambda o: o.to_json(), indent=4)

@@ -28,7 +28,7 @@ class View:
         if nome == "" or idade < 18 or cpf == "" or email == "" or senha == "":
             raise ValueError("Cliente inválido")
         
-        cliente = Cliente(0, nome, email, cpf, senha, telefone, idade, False)
+        cliente = Cliente(0, nome, cpf, telefone, idade, email, senha, False)
         Clientes.inserir(cliente)
         
         
