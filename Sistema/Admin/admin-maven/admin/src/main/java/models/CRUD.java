@@ -15,7 +15,9 @@ public class CRUD<TipoObjeto extends VerificaId> {
 
     public void inserir(TipoObjeto objeto) {
         abrir();
-        int id = 0;
+        int id;
+        if (tipoObjeto == Cliente.class && listaObjetos.isEmpty()) { id = -1; } 
+        else { id = 0; }
         for (TipoObjeto obj : listaObjetos) {
             if (obj.getId() > id) {
                 id = obj.getId();

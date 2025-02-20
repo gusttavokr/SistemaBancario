@@ -36,7 +36,8 @@ public class App {
             }
         }
     }
-    public static int menuAdmin(Scanner scanner) {
+
+    public static boolean menuAdmin(Scanner scanner) {
         while (true) {
             System.out.println("1-Inserir Cliente\n2-Listar Clientes\n3-Atualizar Cliente\n4-Deletar Cliente\n5-Inserir Tipo de Lançamento\n6-Listar Tipos de Lançamentos\n7-Atualizar Tipo de Lançamento\n8-Deletar Tipo de Lançamento\n9-Analisar Pedido de Cartão\n10-Listar Cartões\n11-Atualizar Cartão\n12-Deletar Cartão\n13-Listar Contas\n14-Listar Lançamentos");
             System.out.print("Digite a opção desejada: ");
@@ -84,8 +85,7 @@ public class App {
                     listarLancamentos(); // criar Lancamentos com salvar e abrir
                     break;
                 case 15:
-                    System.out.println("FIM DE DE EXECUÇÃO");
-                    System.exit(0);
+                    return true; // logout recebe true caso o usuário deseje sair
                 default:
                     System.out.println("OPÇÃO INVÁLIDA");
                     break;
@@ -191,14 +191,20 @@ public class App {
     
 
     public static void main(String[] args) {
-        
         Scanner scanner = new Scanner(System.in);
-        int idConta = menuVisitante(scanner); 
-        if (idConta == 0) {
-            menuAdmin();
-        } else {
-            System.out.priintln("*MENU DO CLIENTE*");
+        while (true) { // Loop principal do programa
+            int idConta = menuVisitante(scanner); // Exibe o menu do visitante
+            if (idConta == 0) {
+                // Menu do admin
+                boolean logout = menuAdmin(scanner);
+                if (logout) {
+                    System.out.println("Logout realizado. Voltando ao menu do visitante.");
+                }
+            } else {
+                // Menu do cliente (a ser implementado)
+                System.out.println("*MENU DO CLIENTE*");
+            }
         }
-        scanner.close();
+        // scanner.close(); // Não é necessário fechar o scanner no loop principal
     }
 }

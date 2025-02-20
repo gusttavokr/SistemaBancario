@@ -13,6 +13,31 @@ import java.util.Random;
 
 public class View {
 
+    public static void criarAdmin() {
+        CRUD<Cliente> clientes = new CRUD<Cliente>(Cliente.class);
+        Cliente admin = new Cliente(0, "Admin", "Admin", "Admin", 18, "Admin", "Admin");
+        admin.setAdmin(true);
+        clientes.inserir(admin);
+    }
+
+    public static int entrarNoSistema(String email, String senha) {
+        CRUD<Cliente> clientes = new CRUD<Cliente>(Cliente.class);
+        List<Cliente> listaClientes = clientes.listar();
+        CRUD<Conta> contas = new CRUD<Conta>(Conta.class);
+        List<Contas> listaContas = contas.listar();
+        for (Cliente clt : listaClientes) {
+            if (clt.getEmail() == email && clt.getSenha() == senha) {
+                System.out.println(String.format("Seja bem-vindo, %s!", clt.getNome()));
+                for (Conta cnt : listaContas) {
+                    if (clt.getId() == cnt.getIdCliente()) {
+                        return cnt.getId(); // id da conta
+                    }
+                }
+            }
+        }
+        return -1;
+    }
+
     public static void inserirCliente(String nome, String cpf, String telefone, int idade, String email, String senha) {
         Cliente cliente = new Cliente(0, nome, cpf, telefone, idade, email, senha);
         CRUD<Cliente> clientes = new CRUD<>(Cliente.class);
@@ -31,7 +56,7 @@ public class View {
     public static void listarClientes() {
         CRUD<Cliente> clientes = new CRUD<>(Cliente.class);
         List<Cliente> listaObjetos = clientes.listar();
-        if (listaObjetos == null) {
+        if (listaObjetos.isEmpty()) {
             System.out.println("NENHUM CLIENTE CADASTRADO");
         } else {
             for (Cliente c : listaObjetos) {
@@ -84,7 +109,7 @@ public class View {
     public static void listarTiposLancamentos() {
         CRUD<TipoLancamento> tiposLancamentos = new CRUD<>(TipoLancamento.class);
         List<TipoLancamento> listaObjetos = tiposLancamentos.listar();
-        if (listaObjetos == null) {
+        if (listaObjetos.isEmpty()) {
             System.out.println("NENHUM TIPO DE LANÇAMENTO CADASTRADO");
         } else {
             for (TipoLancamento tp : listaObjetos) {
@@ -117,7 +142,7 @@ public class View {
     public static boolean listarPedidosCartao() {
         CRUD<PedidoCartao> pedidos = new CRUD<>(PedidoCartao.class);
         List<PedidoCartao> listaObjetos = pedidos.listar();
-        if (listaObjetos == null) {
+        if (listaObjetos.isEmpty()) {
             System.out.println("NENHUM PEDIDO PARA ANALISAR");
             return false;
         } else {
@@ -203,7 +228,7 @@ public class View {
     public static void listarContas() {
         CRUD<Conta> contas = new CRUD<>(Conta.class);
         List<Conta> listaObjetos = contas.listar();
-        if (listaObjetos == null) {
+        if (listaObjetos.isEmpty()) {
             System.out.println("NENHUMA CONTA CADASTRADA");
         } else {
             for (Conta c : listaObjetos) {
@@ -215,7 +240,7 @@ public class View {
     public static void listarLancamentos() {
         CRUD<Lancamento> lancamentos = new CRUD<>(Lancamento.class);
         List<Lancamento> listaObjetos = lancamentos.listar();
-        if (listaObjetos == null) {
+        if (listaObjetos.isEmpty()) {
             System.out.println("NENHUM LANCAMENTO CADASTRADO");
         } else {
             for (Lancamento l : listaObjetos) {
