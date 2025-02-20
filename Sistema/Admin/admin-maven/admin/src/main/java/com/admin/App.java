@@ -39,7 +39,7 @@ public class App {
 
     public static boolean menuAdmin(Scanner scanner) {
         while (true) {
-            System.out.println("1-Inserir Cliente\n2-Listar Clientes\n3-Atualizar Cliente\n4-Deletar Cliente\n5-Inserir Tipo de Lançamento\n6-Listar Tipos de Lançamentos\n7-Atualizar Tipo de Lançamento\n8-Deletar Tipo de Lançamento\n9-Analisar Pedido de Cartão\n10-Listar Cartões\n11-Atualizar Cartão\n12-Deletar Cartão\n13-Listar Contas\n14-Listar Lançamentos");
+            System.out.println("1-Inserir Cliente\n2-Listar Clientes\n3-Atualizar Cliente\n4-Deletar Cliente\n5-Inserir Tipo de Lançamento\n6-Listar Tipos de Lançamentos\n7-Atualizar Tipo de Lançamento\n8-Deletar Tipo de Lançamento\n9-Analisar Pedido de Cartão\n10-Listar Cartões\n11-Atualizar Cartão\n12-Deletar Cartão\n13-Listar Contas\n14-Listar Lançamentos\n15-Logout");
             System.out.print("Digite a opção desejada: ");
             int op = scanner.nextInt();
             scanner.nextLine();
@@ -122,8 +122,8 @@ public class App {
         scanner.nextLine();
         System.out.print("Digite o novo nome do cliente: ");
         String nome = scanner.nextLine();
-        System.out.print("Digite o novo CPF do cliente: ");
-        String cpf = scanner.nextLine();
+        // System.out.print("Digite o novo CPF do cliente: ");
+        // String cpf = scanner.nextLine();
         System.out.print("Digite o novo telefone do cliente: ");
         String telefone = scanner.nextLine();
         System.out.print("Digite a nova idade do cliente: ");
@@ -133,7 +133,7 @@ public class App {
         String email = scanner.nextLine();
         System.out.print("Digite a nova senha do cliente: ");
         String senha = scanner.nextLine();
-        View.atualizarCliente(id, nome, cpf, telefone, idade, email, senha); }
+        View.atualizarCliente(id, nome, telefone, idade, email, senha); }
 
     public static void deletarCliente(Scanner scanner) {
         System.out.print("Digite o ID do cliente desejado: ");
@@ -188,6 +188,29 @@ public class App {
                 View.analisarPedidosCartao(id, op, 0.0, "00/00");
             }
         }
+    }
+
+    public static void listarCartoes() {
+        View.listarCartoes();
+    }
+
+    public static void atualizarCartao(Scanner scanner) {
+        System.out.print("Digite o ID do cartão: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Digite o novo limite do cartão: ");
+        Double limite = scanner.nextDouble();
+        scanner.nextLine();
+        System.out.print("Digite a nova validade do cartão(MM/AA): ");
+        String validade = scanner.nextLine();
+        View.atualizarCartao(id, limite, validade);
+    }
+
+    public static void deletarCartao(Scanner scanner) {
+        System.out.print("Digite o ID do cartão: ");
+        int id = scanner.nextInt();
+        scanner.nextLine();
+        View.deletarCartao(id);
     }
 
     public static void listarContas() {

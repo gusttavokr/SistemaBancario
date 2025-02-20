@@ -72,15 +72,18 @@ public class View {
         }
     } 
 
-    public static void atualizarCliente(int id, String nome, String cpf, String telefone, int idade, String email, String senha) {
-        Cliente cliente = new Cliente(id, nome, cpf, telefone, idade, email, senha);
+    public static void atualizarCliente(int id, String nome, String telefone, int idade, String email, String senha) {
         CRUD<Cliente> clientes = new CRUD<>(Cliente.class);
-        boolean idFound = clientes.atualizar(id, cliente);
-        if (idFound) {
-            System.out.println("CLIENTE ATUALIZADO!");
-        } else {
-            System.out.println("ID NÃO ENCONTRADO");
+        List<Cliente> listaObjetos = clientes.listar();
+        for (Cliente c : listaObjetos) {
+            if (c.getId() == id) {
+                Cliente cliente = new Cliente(id, nome, c.getCpf(), telefone, idade, email, senha);
+                clientes.atualizar(id, cliente);
+                System.out.println("CLIENTE ATUALIZADO COM SUCESSO");
+                return;
+            }
         }
+        System.out.println("ID NÃO ENCONTRADO");
     }
 
     public static void deletarCliente(int id) {
@@ -101,7 +104,7 @@ public class View {
         boolean idClienteFound = clientes.deletar(id);
         boolean idContaFound = contas.deletar(idConta); 
         if (idClienteFound && idContaFound) {
-            System.out.println("CLIENTE DELETADO!");
+            System.out.println("CLIENTE DELETADO COM SUCESSO");
         } else {
             System.out.println("ID NÃO ENCONTRADO");
         }
@@ -130,7 +133,7 @@ public class View {
         CRUD<TipoLancamento> tiposLancamentos = new CRUD<>(TipoLancamento.class);
         boolean idFound = tiposLancamentos.atualizar(id, tipoLancamento);
         if (idFound) {
-            System.out.println("DESCRIÇÃO ATUALIZADA!");
+            System.out.println("DESCRIÇÃO ATUALIZADA COM SUCESSO");
         } else {
             System.out.println("ID NÃO ENCONTRADO!");
         }
@@ -140,7 +143,7 @@ public class View {
         CRUD<TipoLancamento> tiposLancamentos = new CRUD<>(TipoLancamento.class);
         boolean idFound = tiposLancamentos.deletar(id);
         if (idFound) {
-            System.out.println("TIPO DE LANÇAMENTO DELETADO!");
+            System.out.println("TIPO DE LANÇAMENTO DELETADO COM SUCESSO");
         } else {
             System.out.println("ID NÃO ENCONTRADO!");
         }
@@ -229,6 +232,42 @@ public class View {
             }
         }
         System.out.println("ID NÃO ENCONTRADO");
+    }
+
+    public static void listarCartoes() {
+        CRUD<Cartao> cartoes = new CRUD<>(Cartao.class);
+        List<Cartao> listaObjetos = cartoes.listar();
+        if (listaObjetos.isEmpty()) {
+            System.out.println("NENHUM CARTÃO CADASTRADO");
+        } else {
+            for (Cartao c : listaObjetos) {
+                System.out.println(c.toString());
+            }
+        }
+    }
+
+    public static void atualizarCartao(int id, Double limite, String validade) {
+        CRUD<Cartao> cartoes = new CRUD<>(Cartao.class);
+        List<Cartao> listaObjetos = cartoes.listar();
+        for (Cartao c : listaObjetos) {
+            if (c.getId() == id) {
+                Cartao cartao = new Cartao(id, c.getIdConta(), c.getDebito(), c.getCredito(), limite, validade, c.getNumero(), c.getSenha());
+                cartoes.atualizar(id, cartao);
+                System.out.println("CARTÃO DELETADO COM SUCESSO");
+                return;
+            }
+        }
+        System.out.println("ID NÃO ENCONTRADO");
+    }
+
+    public static void deletarCartao(int id) {
+        CRUD<Cartao> cartoes = new CRUD<Cartao>(Cartao.class);
+        boolean idFound = cartoes.deletar(id);
+        if (idFound) {
+            System.out.println("CARTÃO DELETADO COM SUCESSO");
+        } else {
+            System.out.println("ID NÃO ENCONTRADO");
+        }
     }
 
 
