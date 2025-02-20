@@ -1,6 +1,14 @@
 package com.admin;
 
+import models.Cliente;
+import models.Conta;
+import models.Cartao;
+import models.Lancamento;
+import models.TipoLancamento;
+import models.PedidoCartao;
 import view.View;
+
+import java.util.List;
 import java.util.Scanner;
 
 
@@ -21,7 +29,8 @@ public class App {
                     String senha = scanner.nextLine();
                     int idConta = View.entrarNoSistema(email, senha);
                     if (idConta == -1) { System.out.println("E-MAIL OU SENHA INVÁLIDOS"); }
-                    else { return idConta; }
+                    else if (id == 0) { return idConta; }
+                    else { System.out.println("ENTRADA NEGADA, APENAS O ADMIN TEM PERMISSÃO DE ACESSO"); }
                     break;
                 case 2:
                     inserirCliente(scanner);
@@ -69,22 +78,22 @@ public class App {
                     deletarTipoLancamento(scanner);
                     break;
                 case 9:
-                    // analisarPedidosCartao(scanner); // criar PedidosCartao com abrir e salvar
+                    analisarPedidosCartao(scanner); // criar PedidosCartao com abrir e salvar
                     break;
                 case 10:
-                    // listarCartoes(); // fazer view e ui
+                    listarCartoes(); // fazer view e ui
                     break;
                 case 11:
-                    // atualizarCartao(scanner); // fazer view e ui
+                    atualizarCartao(scanner); // fazer view e ui
                     break;
                 case 12:
-                    // deletarCartao(scanner); // fazer view e ui
+                    deletarCartao(scanner); // fazer view e ui
                     break;
                 case 13:
-                    // listarContas(); // criar Contas com salvar e abrir
+                    listarContas(); // criar Contas com salvar e abrir
                     break;
                 case 14:
-                    // listarLancamentos(); // criar Lancamentos com salvar e abrir
+                    listarLancamentos(); // criar Lancamentos com salvar e abrir
                     break;
                 case 15:
                     return true; // logout recebe true caso o usuário deseje sair
@@ -113,7 +122,14 @@ public class App {
     }
 
     public static void listarClientes() {
-        View.listarClientes();
+        List<Cliente> clientes= View.listarClientes();
+        if (clientes.isEmpty()) {
+            System.out.println("NENHUM CLIENTE CADASTRADO");
+        } else {
+            for (Cliente c : clientes) {
+                System.out.println(c.toString());
+            }
+        }
     }
 
     public static void atualizarCliente(Scanner scanner) {
@@ -122,8 +138,6 @@ public class App {
         scanner.nextLine();
         System.out.print("Digite o novo nome do cliente: ");
         String nome = scanner.nextLine();
-        // System.out.print("Digite o novo CPF do cliente: ");
-        // String cpf = scanner.nextLine();
         System.out.print("Digite o novo telefone do cliente: ");
         String telefone = scanner.nextLine();
         System.out.print("Digite a nova idade do cliente: ");
@@ -149,7 +163,14 @@ public class App {
     }
 
     public static void listarTiposLancamentos() {
-        View.listarTiposLancamentos();
+        List<TipoLancamento> tiposLancamentos = View.listarTiposLancamentos();
+        if (tiposLancamentos.isEmpty()) {
+            System.out.println("NENHUM TIPO DE LANÇAMENTO CADASTRADO");
+        } else {
+            for (TipoLancamento tl : tiposLancamentos) {
+                System.out.println(tl.toString());
+            }
+        }
     }
 
     public static void atualizarTipoLancamento(Scanner scanner) {
@@ -169,8 +190,11 @@ public class App {
     }
 
     public static void analisarPedidosCartao(Scanner scanner) {
-        boolean pedidosExist = View.listarPedidosCartao();
-        if (pedidosExist) {
+        List<PedidoCartao> pedidos = View.listarPedidosCartao();
+        if (!(pedidos.isEmpty())) {
+            for (PedidoCartao pc : pedidos) {
+                System.out.println(pc.toString());
+            }
             System.out.print("Digite o ID do pedido que deseja analisar: ");
             int id = scanner.nextInt();
             scanner.nextLine();
@@ -187,11 +211,20 @@ public class App {
             } else {
                 View.analisarPedidosCartao(id, op, 0.0, "00/00");
             }
+        } else {
+            System.out.println("NENHUM PEDIDO DE CARTÃO CADASTRADO");
         }
     }
 
     public static void listarCartoes() {
-        View.listarCartoes();
+        List<Cartao> cartoes = View.listarCartoes();
+        if (cartoes.isEmpty()) {
+            System.out.println("NENHUM CARTÃO CADASTRADO");
+        } else {
+            for (Cartao c : cartoes) {
+                System.out.println(c.toString());
+            }
+        }
     }
 
     public static void atualizarCartao(Scanner scanner) {
@@ -214,13 +247,26 @@ public class App {
     }
 
     public static void listarContas() {
-        View.listarContas();
+        List<Conta> contas = View.listarContas();
+        if (contas.isEmpty()) {
+            System.out.println("NENHUMA CONTA CADASTRADA");
+        } else {
+            for (Conta c : contas) {
+                System.out.println(c.toString());
+            }
+        }
     }
 
     public static void listarLancamentos() {
-        View.listarLancamentos();
+        List<Lancamento> lancamentos = View.listarLancamentos();
+        if (lancamentos.isEmpty()) {
+            System.out.println("NENHUM LANÇAMENTO CADASTRADO");
+        } else {
+            for (Lancamento l : lancamentos) {
+                System.out.println(l.toString());
+            }
+        }
     }
-    
 
     public static void main(String[] args) {
         View.criarAdmin();
@@ -230,12 +276,8 @@ public class App {
             if (idConta == 0) {
                 boolean logout = menuAdmin(scanner);
                 if (logout) { System.out.println("LOGOUT REALIZADO"); } 
-            } else if (idConta == -1) {
-                break;
-            } else {
-                System.out.println("*MENU DO CLIENTE*");
-            }
+            } else if (idConta == -1) { break; }
         }
         scanner.close();
-    }
+    }   
 }

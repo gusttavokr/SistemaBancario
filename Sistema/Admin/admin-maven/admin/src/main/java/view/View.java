@@ -60,16 +60,10 @@ public class View {
         contas.inserir(conta);
     }
 
-    public static void listarClientes() {
+    public static List<Cliente> listarClientes() {
         CRUD<Cliente> clientes = new CRUD<>(Cliente.class);
         List<Cliente> listaObjetos = clientes.listar();
-        if (listaObjetos.isEmpty()) {
-            System.out.println("NENHUM CLIENTE CADASTRADO");
-        } else {
-            for (Cliente c : listaObjetos) {
-                System.out.println(c.toString());
-            }
-        }
+        return listaObjetos;
     } 
 
     public static void atualizarCliente(int id, String nome, String telefone, int idade, String email, String senha) {
@@ -116,16 +110,10 @@ public class View {
         tiposLancamentos.inserir(tipoLancamento);
     }
 
-    public static void listarTiposLancamentos() {
+    public static List<TipoLancamento> listarTiposLancamentos() {
         CRUD<TipoLancamento> tiposLancamentos = new CRUD<>(TipoLancamento.class);
         List<TipoLancamento> listaObjetos = tiposLancamentos.listar();
-        if (listaObjetos.isEmpty()) {
-            System.out.println("NENHUM TIPO DE LANÇAMENTO CADASTRADO");
-        } else {
-            for (TipoLancamento tp : listaObjetos) {
-                System.out.println(tp.toString());
-            }
-        }
+        return listaObjetos;
     }
 
     public static void atualizarTipoLancamento(int id, String descricao) {
@@ -149,19 +137,10 @@ public class View {
         }
     }
 
-    public static boolean listarPedidosCartao() {
+    public static List<PedidoCartao> listarPedidosCartao() {
         CRUD<PedidoCartao> pedidos = new CRUD<>(PedidoCartao.class);
         List<PedidoCartao> listaObjetos = pedidos.listar();
-        if (listaObjetos.isEmpty()) {
-            System.out.println("NENHUM PEDIDO PARA ANALISAR");
-            return false;
-        } else {
-            for (PedidoCartao pc : listaObjetos) {
-                System.out.println(pc.toString());
-            }
-            return true;
-
-        }
+        return listaObjetos;
     }
 
     public static String gerarNumCartao() {
@@ -234,16 +213,10 @@ public class View {
         System.out.println("ID NÃO ENCONTRADO");
     }
 
-    public static void listarCartoes() {
+    public static List<Cartao> listarCartoes() {
         CRUD<Cartao> cartoes = new CRUD<>(Cartao.class);
         List<Cartao> listaObjetos = cartoes.listar();
-        if (listaObjetos.isEmpty()) {
-            System.out.println("NENHUM CARTÃO CADASTRADO");
-        } else {
-            for (Cartao c : listaObjetos) {
-                System.out.println(c.toString());
-            }
-        }
+        return listaObjetos;
     }
 
     public static void atualizarCartao(int id, Double limite, String validade) {
@@ -271,28 +244,16 @@ public class View {
     }
 
 
-    public static void listarContas() {
+    public static List<Conta> listarContas() {
         CRUD<Conta> contas = new CRUD<>(Conta.class);
         List<Conta> listaObjetos = contas.listar();
-        if (listaObjetos.isEmpty()) {
-            System.out.println("NENHUMA CONTA CADASTRADA");
-        } else {
-            for (Conta c : listaObjetos) {
-                System.out.println(c.toString());
-            }
-        }
+        return listaObjetos;
     }
 
-    public static void listarLancamentos() {
+    public static List<Lancamento> listarLancamentos() {
         CRUD<Lancamento> lancamentos = new CRUD<>(Lancamento.class);
         List<Lancamento> listaObjetos = lancamentos.listar();
-        if (listaObjetos.isEmpty()) {
-            System.out.println("NENHUM LANCAMENTO CADASTRADO");
-        } else {
-            for (Lancamento l : listaObjetos) {
-                System.out.println(l.toString());
-            }
-        }
+        return listaObjetos;
     }
 }
 
@@ -314,6 +275,6 @@ DELETAR CARTÃO (UI E VIEW) -> OK
 PERSISTẼNCIA CONTAS (FAZER CLASSE A ATUALIZAR MÉTODO DA SUPERCLASSE) -> OK
 PERSISTÊNCIA LANÇAMENTOS (FAZER CLASSE A ATUALIZAR MÉTODO DA SUPERCLASSE) -> OK
 PERSISTÊNCIA PEDIDOS CARTÕES (FAZER CLASSE A ATUALIZAR MÉTODO DA SUPERCLASSE) -> OK
-LOGIN ADM
+LOGIN ADM -> OK
 
 */
