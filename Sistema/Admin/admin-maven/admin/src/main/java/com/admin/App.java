@@ -29,7 +29,7 @@ public class App {
                     String senha = scanner.nextLine();
                     int idConta = View.entrarNoSistema(email, senha);
                     if (idConta == -1) { System.out.println("E-MAIL OU SENHA INVÁLIDOS"); }
-                    else if (id == 0) { return idConta; }
+                    else if (idConta == 0) { return idConta; }
                     else { System.out.println("ENTRADA NEGADA, APENAS O ADMIN TEM PERMISSÃO DE ACESSO"); }
                     break;
                 case 2:

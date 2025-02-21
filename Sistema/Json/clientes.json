@@ -1,22 +1,22 @@
 [
-    {
-        "id": 0,
-        "nome": "Admin",
-        "email": "Admin",
-        "cpf": "Admin",
-        "senha": "Admin",
-        "telefone": "Admin",
-        "idade": 18,
-        "admin": true
-    },
-    {
-        "id": 1,
-        "nome": "Gilbert",
-        "email": "gilbert@gmail.com",
-        "cpf": "1234356",
-        "senha": "1234",
-        "telefone": "123456",
-        "idade": 30,
-        "admin": false
-    }
+  {
+    "id": 0,
+    "nome": "Admin",
+    "cpf": "Admin",
+    "telefone": "Admin",
+    "idade": 18,
+    "email": "Admin",
+    "senha": "Admin",
+    "admin": true
+  },
+  {
+    "id": 1,
+    "nome": "teste",
+    "cpf": "23456789",
+    "telefone": "123456789",
+    "idade": 19,
+    "email": "teste",
+    "senha": "1234",
+    "admin": false
+  }
 ]
