@@ -31,7 +31,7 @@ public class View {
         List<Conta> listaContas = contas.listar();
         for (Cliente clt : listaClientes) {
             if (clt.getEmail().equals(email) && clt.getSenha().equals(senha)) {
-                System.out.println(String.format("Seja bem-vindo, %s!", clt.getNome()));
+                System.out.println(String.format("SEJA BEM-VINDO, %s!", clt.getNome()));
                 if (clt.getId() == 0) {
                     return 0; // o admin não tem conta, então retorna o id do cliente se o login for feito pelo admin
                 }
@@ -66,12 +66,12 @@ public class View {
         return listaObjetos;
     } 
 
-    public static void atualizarCliente(int id, String nome, String telefone, int idade, String email, String senha) {
+    public static void atualizarCliente(int id, String telefone, int idade, String email, String senha) {
         CRUD<Cliente> clientes = new CRUD<>(Cliente.class);
         List<Cliente> listaObjetos = clientes.listar();
         for (Cliente c : listaObjetos) {
             if (c.getId() == id) {
-                Cliente cliente = new Cliente(id, nome, c.getCpf(), telefone, idade, email, senha);
+                Cliente cliente = new Cliente(id, c.getNome(), c.getCpf(), telefone, idade, email, senha);
                 clientes.atualizar(id, cliente);
                 System.out.println("CLIENTE ATUALIZADO COM SUCESSO");
                 return;
