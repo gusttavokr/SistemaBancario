@@ -43,7 +43,7 @@ class UI:
         print("\n==============================")
         print("\nBem-vindo ao sistema bancário! \n")
         print("1- Atualizar dados, 2- Ver meus dados 3- Pedir Cartão, 4- Listar Pedidos, 5- Excluir pedido, 6- Listar cartões(em testes)\n")
-        print("7- Transação, 8- Listar operações, 9- Excluir conta, 99- Sair\n")
+        print("7- Transação(em testes), 8- Listar operações(em testes), 9- Excluir conta(em testes), 99- Sair\n")
         op= int(input("Selecione uma das opções: "))
 
         if op == 1:
@@ -63,7 +63,9 @@ class UI:
         if op == 8:
             print("Opção não disponível!")
         if op == 9:
-            print("Opção não disponível!")
+            UI.excluirConta(cls.cliente_id)
+        if op >= 10:
+            print("Opção não disponível")
         
         return op
         
@@ -137,8 +139,15 @@ class UI:
     def transacao(cls, cliente_id):
         #View.listarClientes(cliente_id)
         destino = int(input("Digite o número da conta destino para a transação: "))
+        tipos = View.listarTipos()
+        print(tipos)
+        tipo = input("Insira o tipo de transação desejada: ")
 
-
+    @classmethod
+    def excluirConta(cls, cliente_id):
+        View.excluirConta(cliente_id)
+        print("Conta excluída com sucesso!")
+        
 UI.main()
 
 

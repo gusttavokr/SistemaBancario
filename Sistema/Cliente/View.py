@@ -21,6 +21,15 @@ class View:
         return None
 
     @staticmethod
+    def excluirConta(idcliente):
+        for c in Contas.listar():
+            if c.getId() == idcliente:
+                if c.getSaldo() > 0:
+                    raise ValueError('Saldo disponivel, impossivel excluir conta!')
+                else:
+                    Contas.excluir(idcliente)
+        
+    @staticmethod
     def inserirCliente(nome, email, cpf, senha, telefone, idade):
         for c in Clientes.listar():
             if c.getCPF() == cpf:
@@ -38,11 +47,11 @@ class View:
         conta = Conta(0, cliente.getId(), numero, 0)
         Contas.inserir(conta)
 
-    # @staticmethod
-    # def listarClientes(cliente_id):
-    #     for c in Clientes.listar():
-    #         if c.getId() != cliente_id:
-    #             print(c)
+    @staticmethod
+    def listarClientes(cliente_id):
+        for c in Contas.listar():
+            if c.getId() != cliente_id:
+                print(c.getNumero())
 
     @staticmethod
     def verDados(cliente_id):
@@ -111,6 +120,11 @@ class View:
             raise ValueError("Valor de lançamento inválido!")
         L = Lançamento(id, idTipoLançamento, numeroContaOrigem, numeroContaDestino, valor)
         Lançamentos.inserir(L)
+
+    @staticmethod
+    def listarTipos():
+        for t in tiposLançamentos.listar():
+            print(t)
 
     @staticmethod
     def listarLançamentos(numeroContaOrigem):

@@ -18,15 +18,5 @@
         "email": "teste",
         "senha": "1234",
         "admin": false
-    },
-    {
-        "id": 2,
-        "nome": "Gustavo",
-        "cpf": "123456",
-        "telefone": "154637829",
-        "idade": 19,
-        "email": "gustavo@email.com",
-        "senha": "1234",
-        "admin": false
     }
 ]
