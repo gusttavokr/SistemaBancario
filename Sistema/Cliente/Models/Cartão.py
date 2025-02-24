@@ -92,7 +92,7 @@ class Cartões(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("/workspaces/SistemaBancario/Sistema/Json/cartoes.json", mode="r") as arquivo:
+            with open("../Json/cartoes.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     card = Cartão(
@@ -112,5 +112,5 @@ class Cartões(Modelo):
             pass
     @classmethod
     def salvar(cls):
-        with open("/workspaces/SistemaBancario/Sistema/Json/cartoes.json", mode="w") as arquivo:
+        with open("../Json/cartoes.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default =vars)

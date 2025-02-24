@@ -68,7 +68,7 @@ class Lançamentos(Modelo):
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("/workspaces/SistemaBancario/Sistema/Json/Lancamentos.json", mode ="r") as arquivo:
+            with open("../Json/Lancamentos.json", mode ="r") as arquivo:
                 objetos = json.dump(arquivo)
                 for obj in objetos:
                     L = Lançamento(
@@ -86,5 +86,5 @@ class Lançamentos(Modelo):
     
     @classmethod
     def salvar(cls):
-        with open("/workspaces/SistemaBancario/Sistema/Json/Lancamentos.json", mode="w") as arquivo:
+        with open("../Json/Lancamentos.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default =vars)

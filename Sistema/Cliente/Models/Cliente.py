@@ -92,13 +92,13 @@ class Cliente:
 class Clientes(Modelo):
     @classmethod
     def salvar(cls):
-        with open("/workspaces/SistemaBancario/Sistema/Json/clientes.json", mode="w") as arquivo:
+        with open("../Json/clientes.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default=lambda o: o.to_json(), indent=4)
     @classmethod
     def abrir(cls):
         cls.objetos = []
         try:
-            with open ("/workspaces/SistemaBancario/Sistema/Json/clientes.json", mode="r") as arquivo:
+            with open ("../Json/clientes.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     u = Cliente(

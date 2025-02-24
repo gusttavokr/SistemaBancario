@@ -66,7 +66,7 @@ class View:
                 raise ValueError('CPF já existente')
         if nome == "" or cpf == "":
             raise ValueError("Nome ou CPF vazios")
-        cliente = Cliente(c.getId(), nome, email, cpf, senha, telefone, idade, False)
+        cliente = Cliente(c.getId(), nome, cpf, telefone, idade, email, senha, False)
         Clientes.atualizar(cliente)
     
 
