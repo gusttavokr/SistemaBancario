@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "descricao": "Transferencia"
+  },
+  {
+    "id": 2,
+    "descricao": "Credito"
+  },
+  {
+    "id": 3,
+    "descricao": "Debito"
+  }
+]

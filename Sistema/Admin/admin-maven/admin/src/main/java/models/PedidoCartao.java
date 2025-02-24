@@ -7,7 +7,7 @@ public class PedidoCartao implements VerificaId {
     private String tipoCartao; // apenas DEBITO ou CREDITO
     private boolean aprovacao;
 
-    public PedidoCartao(int id, int idCLiente, int idConta, String tipoCartao) {
+    public PedidoCartao(int id, int idCliente, int idConta, String tipoCartao) {
         this.setId(id);
         this.setIdCliente(idCliente);
         this.setIdConta(idConta);
@@ -72,6 +72,6 @@ public class PedidoCartao implements VerificaId {
     }
 
     public String toString() {
-        return String.format("ID Cliente: %d - ID Conta: %d - Tipo de Cartão: %s - Status Aprovação: %b", this.getIdCliente(), this.getIdConta(), this.getTipoCartao(), this.getAprovacao());
+        return String.format("ID Pedido: %d - ID Cliente: %d - ID Conta: %d - Tipo de Cartão: %s - Status Aprovação: %b", this.getId(), this.getIdCliente(), this.getIdConta(), this.getTipoCartao(), this.getAprovacao());
     }
 }

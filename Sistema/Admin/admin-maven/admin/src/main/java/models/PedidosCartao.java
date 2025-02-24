@@ -14,7 +14,7 @@ public class PedidosCartao {
 
     public static void salvar(List<PedidoCartao> listaObjetos) {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        try (FileWriter writer = new FileWriter("/workspaces/SistemaBancario/Sistema/Json/PedidoCartaos.json")) {
+        try (FileWriter writer = new FileWriter("/workspaces/SistemaBancario/Sistema/Json/pedidosCartao.json")) {
             gson.toJson(listaObjetos, writer); // Converte a lista para JSON e escreve no arquivo
         } catch (IOException erro) {
             erro.printStackTrace();
@@ -29,6 +29,11 @@ public class PedidosCartao {
             listaObjetos = gson.fromJson(reader, tipoObjeto); // Desserializa o JSON para a lista de PedidoCartaos
             if (listaObjetos == null) {
                 listaObjetos = new ArrayList<>(); // Garantir que a lista não seja null
+            }
+            // Log para depuração
+            for (PedidoCartao pedido : listaObjetos) {
+                System.out.println("ID Cliente: " + pedido.getIdCliente());
+                System.out.println("ID Conta: " + pedido.getIdConta());
             }
         } catch (IOException erro) {
             System.err.println("Erro ao carregar dados do JSON para a lista: " + erro.getMessage());
