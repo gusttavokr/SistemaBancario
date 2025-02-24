@@ -38,6 +38,18 @@ class View:
         conta = Conta(0, cliente.getId(), numero, 0)
         Contas.inserir(conta)
 
+    # @staticmethod
+    # def listarClientes(cliente_id):
+    #     for c in Clientes.listar():
+    #         if c.getId() != cliente_id:
+    #             print(c)
+
+    @staticmethod
+    def verDados(cliente_id):
+        for c in Clientes.listar():
+            if c.getId() == cliente_id:
+                print(c)
+
     @staticmethod
     def atualizarCliente(nome, email, cpf, senha, telefone, idade):
         for c in Clientes.listar():

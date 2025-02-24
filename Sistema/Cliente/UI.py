@@ -12,9 +12,6 @@ class UI:
     cliente_id = 0
     cliente_nome = ""
 
-    #@staticmethod
-    #def main():
-
     @staticmethod
     def menu_visitante():
         print("1- Criar conta, 2- Entrar no sistema, 99- Fim\n")
@@ -45,25 +42,27 @@ class UI:
     def menuCliente(cls):
         print("\n==============================")
         print("\nBem-vindo ao sistema bancário! \n")
-        print("1- Atualizar dados, 2- Pedir Cartão, 3- Listar Pedidos, 4- Excluir pedido, 5- Listar cartões(em testes)\n")
-        print("6- Transação, 7- Listar operações, 8- Excluir conta, 99- Sair\n")
+        print("1- Atualizar dados, 2- Ver meus dados 3- Pedir Cartão, 4- Listar Pedidos, 5- Excluir pedido, 6- Listar cartões(em testes)\n")
+        print("7- Transação, 8- Listar operações, 9- Excluir conta, 99- Sair\n")
         op= int(input("Selecione uma das opções: "))
 
         if op == 1:
             UI.atualizar()
         if op == 2:
-            UI.pedirCartao(cls.cliente_id)
+            UI.verDados(cls.cliente_id)
         if op == 3:
-            UI.listarPedidos(cls.cliente_id)
+            UI.pedirCartao(cls.cliente_id)
         if op == 4:
-            UI.excluirPedido(cls.cliente_id)
+            UI.listarPedidos(cls.cliente_id)
         if op == 5:
-            UI.listarCartões(cls.cliente_id)
+            UI.excluirPedido(cls.cliente_id)
         if op == 6:
-            print("Opção não disponível!")
+            UI.listarCartões(cls.cliente_id)
         if op == 7:
-            print("Opção não disponível!")
+            UI.transacao(cls.cliente_id)
         if op == 8:
+            print("Opção não disponível!")
+        if op == 9:
             print("Opção não disponível!")
         
         return op
@@ -96,6 +95,10 @@ class UI:
         telefone = input("Digite o seu telefone: ")
         idade = int(input("Digite a sua idade: "))
         View.atualizarCliente(nome, email, cpf, senha, telefone, idade)
+    
+    @classmethod
+    def verDados(cls, cliente_id):
+        View.verDados(cliente_id)
 
     @staticmethod
     def pedirCartao(cliente_id):
@@ -129,6 +132,12 @@ class UI:
             print("Nenhum cartão disponível!")
         else:
             print(cartões)
+
+    @classmethod
+    def transacao(cls, cliente_id):
+        #View.listarClientes(cliente_id)
+        destino = int(input("Digite o número da conta destino para a transação: "))
+
 
 UI.main()
 
