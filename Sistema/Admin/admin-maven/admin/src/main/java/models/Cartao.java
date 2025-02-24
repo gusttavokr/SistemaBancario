@@ -48,7 +48,7 @@ public class Cartao implements VerificaId {
     }
 
     public void setDebito(boolean debito) {
-        if (!(this.getCredito())) {
+        if (!(debito) || !(this.credito)) {
             this.debito = debito;
         } else {
             throw new IllegalArgumentException("THIS CARD ALREADY CREDIT");
@@ -56,7 +56,7 @@ public class Cartao implements VerificaId {
     }
 
     public void setCredito(boolean credito) {
-        if (!(this.debito)) {
+        if (!(this.debito) || !(credito)) {
             this.credito = credito;
         } else {
             throw new InvalidCardException("THIS CARD ALREADY DEBIT");
@@ -64,7 +64,7 @@ public class Cartao implements VerificaId {
     }
 
     public void setLimite(Double limite) {
-        if (limite > 0) {
+        if ((this.credito && limite > 0) || (this.debito && limite >= 0)) {
             this.limite = limite;
         } else {
             throw new IllegalArgumentException("INVALID LIMIT");

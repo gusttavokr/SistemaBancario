@@ -198,7 +198,7 @@ public class App {
             System.out.print("Digite o ID do pedido que deseja analisar: ");
             int id = scanner.nextInt();
             scanner.nextLine();
-            System.out.println("Digite 1 para aprovar ou 0 para reprovar: ");
+            System.out.print("Digite 1 para aprovar ou 0 para reprovar: ");
             int op = scanner.nextInt();
             scanner.nextLine();
             if (op == 1) {
