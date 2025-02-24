@@ -49,8 +49,8 @@ class Pedido:
     def to_json(self):
         dic = {}
         dic["id"] = self.getId()
-        dic["id_cliente"] = self.getIdCliente()
-        dic["id_conta"] = self.getIdConta()
+        dic["idCliente"] = self.getIdCliente()
+        dic["idConta"] = self.getIdConta()
         dic["tipoCartao"] = self.gettipoCartão()
         dic["aprovacao"] = self.getAprovação()
 
