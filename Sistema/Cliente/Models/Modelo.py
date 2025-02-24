@@ -44,8 +44,8 @@ class Modelo(ABC):
             cls.salvar()
 
     @classmethod
-    def excluir(cls, obj:object):
-        x = cls.listarId(obj.getId())
-        if x != None:
+    def excluir(cls, obj):
+        x = cls.listarId(obj)
+        if x is not None:
             cls.objetos.remove(x)
             cls.salvar()

@@ -43,31 +43,29 @@ class UI:
 
     @classmethod
     def menuCliente(cls):
-        print("Bem-vindo ao sistema bancário! \n")
-        print("1- Atualizar dados, 2- Pedir Cartão(em testes), 3- Listar Pedidos, 4- Excluir pedido, 5- Listar cartões\n")
+        print("\n==============================")
+        print("\nBem-vindo ao sistema bancário! \n")
+        print("1- Atualizar dados, 2- Pedir Cartão, 3- Listar Pedidos, 4- Excluir pedido, 5- Listar cartões\n")
         print("6- Transação, 7- Listar operações, 8- Excluir conta, 99- Sair\n")
-        op= int(input("Selecione uma das opções:"))
+        op= int(input("Selecione uma das opções: "))
 
         if op == 1:
             UI.atualizar()
         if op == 2:
             UI.pedirCartao(cls.cliente_id)
         if op == 3:
-            UI.listarPedidos()
-            #case 1:
-            #    UI.atualizar()
-            #case 2:
-            #    UI.pedirCartao()
-            #case 3:
-            #    UI.listarPedidos()
-            #case 4:
-            #    UI.excluirPedido()
-            #case 5:
-            #    UI.listarCartao()
-            #case 6:
-            #    UI.lancamento()
-            #case 7: 
-            #    UI.listarLancamento()
+            UI.listarPedidos(cls.cliente_id)
+        if op == 4:
+            UI.excluirPedido(cls.cliente_id)
+        if op == 5:
+            print("Opção não disponível!")
+        if op == 6:
+            print("Opção não disponível!")
+        if op == 7:
+            print("Opção não disponível!")
+        if op == 8:
+            print("Opção não disponível!")
+        
         return op
         
     @classmethod
@@ -107,17 +105,22 @@ class UI:
         c = "CREDITO"
         if op == 1:
             View.inserirPedido(cliente_id, d)
+            print("\nPedido feito com sucesso!")
         else:
             View.inserirPedido(cliente_id, c)
+            print("\nPedido feito com sucesso!")
 
     @classmethod
-    def listarPedidos(cls):
-        pedidos = View.listarPedidos()
-        if len(pedidos) == 0:
-            print("Nenhum pedido feito")
-        else:
-            for pedido in pedidos:
-                print(pedido)
+    def listarPedidos(cls, cliente_id):
+        View.listarPedidos(cliente_id)
+        
+
+    @classmethod
+    def excluirPedido(cls, cliente_id):
+        View.listarPedidos(cliente_id)
+        x = int(input("Selecione o id do pedido que você deseja excluir: "))
+        View.excluirPedido(x)
+        print("\nPedido excluído com sucesso!")
 
 UI.main()
 

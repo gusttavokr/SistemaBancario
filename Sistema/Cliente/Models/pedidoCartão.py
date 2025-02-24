@@ -2,17 +2,17 @@ import json
 from Models.Modelo import Modelo
 
 class Pedido:
-    def __init__(self, id, id_cliente, id_conta, tipoCartao):
+    def __init__(self, id, id_cliente, id_conta, tipoCartao, aprovacao = False):
         self.__id = id
         self.__idCliente = id_cliente
         self.__idConta = id_conta
         self.__tipoCartao = tipoCartao
-        self.__aprovação = False
+        self.__aprovacao = aprovacao
 
     def getId(self):
         return self.__id
     def setId(self, id):
-        if len(str(id)) > 0:
+        if id > 0:
             self.__id = id
         else:
             raise ValueError('Id inválido')
@@ -42,37 +42,37 @@ class Pedido:
             raise ValueError('Tipo do cartão inválido')
 
     def getAprovação(self):
-        return self.__aprovação
+        return self.__aprovacao
     def setAprovação(self, aprovação):
-        self.__aprovação = aprovação        
+        self.__aprovacao = aprovação        
 
     def to_json(self):
         dic = {}
         dic["id"] = self.getId()
         dic["id_cliente"] = self.getIdCliente()
         dic["id_conta"] = self.getIdConta()
-        dic["tipoCartão"] = self.gettipoCartão()
-        dic["aprovação"] = self.getAprovação()
+        dic["tipoCartao"] = self.gettipoCartão()
+        dic["aprovacao"] = self.getAprovação()
 
         return dic
 
     def __str__(self):
-        return f"ID = {self.getId()} - idCliente = {self.getIdCliente()} - idConta = {self.getIdConta()} - idCartão = {self.getIdCartão()} - Aprovação = {self.getAprovação()}"
+        return f"ID = {self.getId()} - idCliente = {self.getIdCliente()} - idConta = {self.getIdConta()} - Tipo Cartão = {self.gettipoCartão()} - Aprovação = {self.getAprovação()}"
     
 class Pedidos(Modelo):
     @classmethod
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("Sistema/Json/pedidosCartao.json", mode="r") as arquivo:
+            with open("../Json/pedidosCartao.json", mode="r") as arquivo:
                 objetos_json = json.load(arquivo)
                 for obj in objetos_json:
                     p = Pedido(
                         obj["id"],
                         obj["id_cliente"],
                         obj["id_conta"],
-                        obj["tipoCartão"],
-                        obj["aprovação"]
+                        obj["tipoCartao"],
+                        obj["aprovacao"]
                     )
                     cls.objetos.append(p)
         except FileNotFoundError:
@@ -81,5 +81,5 @@ class Pedidos(Modelo):
             pass
     @classmethod
     def salvar(cls):
-        with open("Sistema/Json/pedidosCartao.json", mode="w") as arquivo:
+        with open("../Json/pedidosCartao.json", mode="w") as arquivo:
             json.dump(cls.objetos, arquivo, default=lambda o: o.to_json(), indent=4)

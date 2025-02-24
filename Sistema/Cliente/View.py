@@ -53,12 +53,12 @@ class View:
     @staticmethod
     def inserirPedido(cliente_id, tipoCartão):
         x = None
-        print(Contas.listar())
+        #print(Contas.listar())
         for i in Contas.listar():
             if i.getIdCliente() == cliente_id:
                 x = i.getId()
         if x == None:
-            raise ValueError("aaaaaaaaaaa")
+            raise ValueError("BUG")
         
         pedido = Pedido(0, cliente_id, x, tipoCartão)
         Pedidos.inserir(pedido)
@@ -66,12 +66,16 @@ class View:
 
 
     @staticmethod
-    def listarPedidos():
-        return Pedidos.listar()
+    def listarPedidos(cliente_id):
+        for p in Pedidos.listar():
+            if p.getIdCliente() == cliente_id:
+                print(p)
+            else:
+                raise ValueError("Nenhum pedido feito!")
 
     @staticmethod
     def excluirPedido(id):
-        Pedidos.excluir(Pedidos.listar(id))
+        Pedidos.excluir(id)
 
 
     # CARTÕES
