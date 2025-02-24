@@ -45,7 +45,7 @@ class UI:
     def menuCliente(cls):
         print("\n==============================")
         print("\nBem-vindo ao sistema bancário! \n")
-        print("1- Atualizar dados, 2- Pedir Cartão, 3- Listar Pedidos, 4- Excluir pedido, 5- Listar cartões\n")
+        print("1- Atualizar dados, 2- Pedir Cartão, 3- Listar Pedidos, 4- Excluir pedido, 5- Listar cartões(em testes)\n")
         print("6- Transação, 7- Listar operações, 8- Excluir conta, 99- Sair\n")
         op= int(input("Selecione uma das opções: "))
 
@@ -58,7 +58,7 @@ class UI:
         if op == 4:
             UI.excluirPedido(cls.cliente_id)
         if op == 5:
-            print("Opção não disponível!")
+            UI.listarCartões(cls.cliente_id)
         if op == 6:
             print("Opção não disponível!")
         if op == 7:
@@ -121,6 +121,14 @@ class UI:
         x = int(input("Selecione o id do pedido que você deseja excluir: "))
         View.excluirPedido(x)
         print("\nPedido excluído com sucesso!")
+
+    @classmethod
+    def listarCartões(cls, cliente_id):
+        cartões = View.listarCartões(cliente_id)
+        if cartões == None:
+            print("Nenhum cartão disponível!")
+        else:
+            print(cartões)
 
 UI.main()
 
