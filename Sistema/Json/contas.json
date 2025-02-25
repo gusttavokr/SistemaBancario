@@ -2,19 +2,13 @@
     {
         "id": 1,
         "idCliente": 1,
-        "numero": "44469386",
-        "saldo": 0
-    },
-    {
-        "id": 3,
-        "idCliente": 3,
-        "numero": "31733585",
+        "numero": "85068726",
         "saldo": 0
     },
     {
         "id": 2,
         "idCliente": 2,
-        "numero": "51980536",
-        "saldo": 10
+        "numero": "90455937",
+        "saldo": 0
     }
 ]

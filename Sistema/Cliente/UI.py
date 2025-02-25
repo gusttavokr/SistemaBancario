@@ -47,7 +47,7 @@ class UI:
         op= int(input("Selecione uma das opções: "))
 
         if op == 1:
-            UI.atualizar()
+            UI.atualizar(cls.cliente_id)
         if op == 2:
             UI.verDados(cls.cliente_id)
         if op == 3:
@@ -88,15 +88,15 @@ class UI:
         idade = int(input("Digite a sua idade: "))
         View.inserirCliente(nome, email, cpf, senha, telefone, idade)
 
-    @staticmethod
-    def atualizar():
+    @classmethod
+    def atualizar(cls, clienteid):
         nome = input("Digite o seu nome: ")
         email = input("Digite o seu email: ")
         cpf = input("Digite o seu cpf: ")
         senha = input("Digite a sua senha: ")
         telefone = input("Digite o seu telefone: ")
         idade = int(input("Digite a sua idade: "))
-        View.atualizarCliente(nome, email, cpf, senha, telefone, idade)
+        View.atualizarCliente(clienteid, nome, email, cpf, senha, telefone, idade)
     
     @classmethod
     def verDados(cls, cliente_id):
@@ -140,8 +140,11 @@ class UI:
         #View.listarClientes(cliente_id)
         destino = int(input("Digite o número da conta destino para a transação: "))
         tipos = View.listarTipos()
-        print(tipos)
-        tipo = input("Insira o tipo de transação desejada: ")
+        for tipo in tipos:
+            print(tipo)
+        
+        
+        #tio = input("Insira o tipo de transação desejada: ")
 
     @classmethod
     def excluirConta(cls, cliente_id):

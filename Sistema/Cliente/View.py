@@ -5,7 +5,7 @@ from Models.Cartão import Cartão, Cartões
 from Models.Conta import Conta, Contas
 from Models.Lançamento import Lançamento, Lançamentos
 from Models.pedidoCartão import Pedido, Pedidos
-from Models.tipoLançamento import tipoLançamento, tiposLançamentos
+from Models.tipoLançamento import tipoLancamento, tiposLancamentos
 
 class View:
 
@@ -60,13 +60,13 @@ class View:
                 print(c)
 
     @staticmethod
-    def atualizarCliente(nome, email, cpf, senha, telefone, idade):
+    def atualizarCliente(clienteid, nome, email, cpf, senha, telefone, idade):
         for c in Clientes.listar():
             if c.getCPF() == cpf:
                 raise ValueError('CPF já existente')
         if nome == "" or cpf == "":
             raise ValueError("Nome ou CPF vazios")
-        cliente = Cliente(c.getId(), nome, cpf, telefone, idade, email, senha, False)
+        cliente = Cliente(clienteid, nome, cpf, telefone, idade, email, senha, False)
         Clientes.atualizar(cliente)
     
 
@@ -91,7 +91,7 @@ class View:
         for p in Pedidos.listar():
             if p.getIdCliente() == cliente_id:
                 print(p)
-                            
+
     @staticmethod
     def excluirPedido(id):
         Pedidos.excluir(id)
@@ -121,8 +121,12 @@ class View:
 
     @staticmethod
     def listarTipos():
-        for t in tiposLançamentos.listar():
-            print(t)
+        x = tiposLancamentos.listar()
+        if x == None:
+            print("Nenhum tipo disponível")
+        else:
+            return x
+            
 
     @staticmethod
     def listarLançamentos(numeroContaOrigem):

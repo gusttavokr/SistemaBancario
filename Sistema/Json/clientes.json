@@ -1,41 +1,21 @@
 [
     {
-        "id": 0,
-        "nome": "Admin",
-        "cpf": "Admin",
-        "telefone": "Admin",
-        "idade": 18,
-        "email": "Admin",
-        "senha": "Admin",
-        "admin": true
+        "id": 2,
+        "nome": "Antonio",
+        "cpf": "1234959493",
+        "telefone": "202020202",
+        "idade": 20,
+        "email": "antonio@email.com",
+        "senha": "1234",
+        "admin": false
     },
     {
         "id": 1,
-        "nome": "teste",
-        "cpf": "1234",
-        "telefone": "1234",
-        "idade": 123,
-        "email": "teste",
-        "senha": "1234",
-        "admin": false
-    },
-    {
-        "id": 2,
         "nome": "Gustavo",
-        "cpf": "12382992020",
-        "telefone": "92929020202",
-        "idade": 19,
-        "email": "gustavo@email.com",
-        "senha": "1234",
-        "admin": false
-    },
-    {
-        "id": 3,
-        "nome": "Antonio",
-        "cpf": "12349393920",
-        "telefone": "292993902",
+        "cpf": "22728828282",
+        "telefone": "202020202",
         "idade": 20,
-        "email": "antonio@email.com",
+        "email": "gustavo@email.com",
         "senha": "1234",
         "admin": false
     }

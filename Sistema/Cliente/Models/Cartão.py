@@ -113,4 +113,4 @@ class Cartões(Modelo):
     @classmethod
     def salvar(cls):
         with open("../Json/cartoes.json", mode="w") as arquivo:
-            json.dump(cls.objetos, arquivo, default =vars)
+            json.dump(cls.objetos, arquivo, default=lambda o: o.to_json(), indent=4)

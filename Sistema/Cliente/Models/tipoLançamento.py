@@ -1,10 +1,10 @@
 import json
 from Models.Modelo import Modelo
 
-class tipoLançamento:
+class tipoLancamento:
     def __init__(self, id, descrição):
         self.__id = id
-        self.__descrição = descrição
+        self.__descricao = descrição
 
     def getId(self):
         return self.__id
@@ -15,32 +15,32 @@ class tipoLançamento:
             raise ValueError("Id inválido")
         
     def getDescrição(self):
-        return self.__descrição
+        return self.__descricao
     def setDescrição(self, descrição):
         if len(descrição) > 0:
-            self.__descrição = descrição
+            self.__descricao = descrição
         else:
             raise ValueError("Descrição inválida")
 
     def to_json(self):
         dic = {}
         dic["id"] = self.getId()
-        dic["descrição"] = self.getDescrição()
+        dic["descricao"] = self.getDescrição()
 
     def __str__(self):
         return f"ID = {self.getId()} - Descrição = {self.getDescrição()}"
     
-class tiposLançamentos(Modelo):
+class tiposLancamentos(Modelo):
     @classmethod
     def abrir(cls):
         cls.objetos = []
         try:
-            with open("../Json/tiposLancamentos", mode = "r") as arquivo:
-                objetos = json.dump(arquivo)
+            with open("../Json/tiposLancamentos.json", mode = "r") as arquivo:
+                objetos = json.load(arquivo)
                 for obj in objetos:
-                    tiposL = tipoLançamento(
+                    tiposL = tipoLancamento(
                         obj["id"],
-                        obj["descrição"]
+                        obj["descricao"]
                     )
                     cls.objetos.append(tiposL)
         except FileNotFoundError:
@@ -50,5 +50,5 @@ class tiposLançamentos(Modelo):
 
     @classmethod
     def salvar(cls):
-        with open("../Json/tiposLancamentos", mode="w") as arquivo:
-            json.dump(cls.objetos, arquivo, default =vars)
+        with open("../Json/tiposLancamentos.json", mode="w") as arquivo:
+            json.dump(cls.objetos, arquivo, default=lambda o: o.to_json(), indent=4)
