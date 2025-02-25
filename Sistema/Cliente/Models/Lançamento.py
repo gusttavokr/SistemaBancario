@@ -54,7 +54,7 @@ class Lançamento:
     def to_json(self):
         dic = {}
         dic["id"] = self.getId()
-        dic["idTipoLançamento"] = self.getIdTipoLançamento()
+        dic["idTipoLancamento"] = self.getIdTipoLançamento()
         dic["numeroContaOrigem"] = self.getNumeroContaOrigem()
         dic["numeroContaDestino"] = self.getNumeroContaDestino()
         dic["valor"] = self.getValor()
@@ -69,11 +69,11 @@ class Lançamentos(Modelo):
         cls.objetos = []
         try:
             with open("../Json/Lancamentos.json", mode ="r") as arquivo:
-                objetos = json.dump(arquivo)
+                objetos = json.load(arquivo)
                 for obj in objetos:
                     L = Lançamento(
                         obj["id"],
-                        obj["idTipoLançamento"],
+                        obj["idTipoLancamento"],
                         obj["numeroContaOrigem"],
                         obj["numeroContaDestino"],
                         obj["valor"]

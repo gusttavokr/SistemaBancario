@@ -61,7 +61,7 @@ class UI:
         if op == 7:
             UI.transacao(cls.cliente_id)
         if op == 8:
-            print("Opção não disponível!")
+            UI.listarTransacoes()
         if op == 9:
             UI.depositar(cls.cliente_id)
         if op >=10 and not 99:
@@ -138,13 +138,18 @@ class UI:
     @classmethod
     def transacao(cls, cliente_id):
         #View.listarClientes(cliente_id)
-        destino = int(input("Digite o número da conta destino para a transação: "))
+        destino = input("Digite o número da conta destino para a transação: ")
         tipos = View.listarTipos()
         for tipo in tipos:
             print(tipo)
         
         
-        #tio = input("Insira o tipo de transação desejada: ")
+        t = input("Insira o tipo de transação desejada: ")
+        origem = input("digite o numero da sua conta: ")
+        valor = int(input("Quanto você deseja mandar: "))
+        View.inserirLançamento(cliente_id, t, origem, destino, valor)
+
+        print("Você tranferiu com sucesso!")
 
     @classmethod
     def excluirConta(cls, cliente_id):
@@ -156,6 +161,12 @@ class UI:
         x = int(input("Digite o valor que você deseja depositar: "))
         View.atualizarSaldo(cliente_id, x)
         print("Depósito feito com sucesso!")
+
+    @staticmethod
+    def listarTransacoes():
+        #x = input("Digite o seu numero da conta: ")
+        View.listarLançamentos()
+       
         
 UI.main()
 

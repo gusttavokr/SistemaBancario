@@ -110,14 +110,22 @@ class View:
 
     # LANÇAMENTOS
     @staticmethod
-    def inserirLançamento(id, idTipoLançamento, numeroContaOrigem, numeroContaDestino, valor):
-        for c in Clientes.listar():
-            if c.getNumeroContaDestino() == None:
-                raise ValueError('Essa conta não existe!')
-        if valor < 0 or valor == "":
-            raise ValueError("Valor de lançamento inválido!")
-        L = Lançamento(id, idTipoLançamento, numeroContaOrigem, numeroContaDestino, valor)
+    def inserirLançamento(cliente_id, idTipoLançamento, numeroContaOrigem, numeroContaDestino, valor):
+        for i in Contas.listar():
+            if i.getNumero() == numeroContaDestino:
+                conta = Conta(i.getId(), i.getIdCliente(), i.getNumero(), (i.getSaldo()+valor))
+                Contas.atualizar(conta)
+
+        for i in Contas.listar():
+            if i.getId() == cliente_id:
+                conta = Conta(i.getId(), i.getIdCliente(), i.getNumero(), (i.getSaldo()-valor))
+                Contas.atualizar(conta)
+        
+        L = Lançamento(0, idTipoLançamento, numeroContaOrigem, numeroContaDestino, valor)
         Lançamentos.inserir(L)
+
+
+
 
     @staticmethod
     def listarTipos():
@@ -129,12 +137,11 @@ class View:
             
 
     @staticmethod
-    def listarLançamentos(numeroContaOrigem):
-        for L in Lançamentos.listar():
-            if L.getNumeroContaOrigem() == numeroContaOrigem:
-                return L
-            else:
-                raise ValueError("Nenhum lançamento feito!")
+    def listarLançamentos(x):
+        Lançamentos.listar()
+        # for L in Lançamentos.listar():
+        #     if L.getNumeroContaOrigem() == x:
+        #         print(L)
 
     @staticmethod
     def atualizarSaldo(id, x):
@@ -143,3 +150,5 @@ class View:
                 conta = Conta(i.getId(), i.getIdCliente(), i.getNumero(), (i.getSaldo()+x))
                 Contas.atualizar(conta)
 
+    # @staticmethod
+    # def transacao()
