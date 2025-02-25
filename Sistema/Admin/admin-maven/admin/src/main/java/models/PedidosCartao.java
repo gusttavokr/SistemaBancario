@@ -30,11 +30,7 @@ public class PedidosCartao {
             if (listaObjetos == null) {
                 listaObjetos = new ArrayList<>(); // Garantir que a lista não seja null
             }
-            // Log para depuração
-            for (PedidoCartao pedido : listaObjetos) {
-                System.out.println("ID Cliente: " + pedido.getIdCliente());
-                System.out.println("ID Conta: " + pedido.getIdConta());
-            }
+
         } catch (IOException erro) {
             System.err.println("Erro ao carregar dados do JSON para a lista: " + erro.getMessage());
         }
