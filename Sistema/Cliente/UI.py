@@ -1,9 +1,9 @@
-from Models.Cliente import Cliente, Clientes
-from Models.Conta import Conta
-from Models.Cartão import Cartão
-from Models.Lançamento import Lançamento
-from Models.tipoLançamento import tipoLançamento
-from Models.pedidoCartão import Pedido, Pedidos
+# from Models.Cliente import Cliente, Clientes
+# from Models.Conta import Conta
+# from Models.Cartão import Cartão
+# from Models.Lançamento import Lançamento
+# from Models.tipoLançamento import tipoLançamento
+# from Models.pedidoCartão import Pedido, Pedidos
 
 from View import View
 
@@ -43,7 +43,7 @@ class UI:
         print("\n==============================")
         print("\nBem-vindo ao sistema bancário! \n")
         print("1- Atualizar dados, 2- Ver meus dados 3- Pedir Cartão, 4- Listar Pedidos, 5- Excluir pedido, 6- Listar cartões(em testes)\n")
-        print("7- Transação(em testes), 8- Listar operações(em testes), 9- Excluir conta(em testes), 99- Sair\n")
+        print("7- Transação(em testes), 8- Listar operações(em testes), 99- Sair\n")
         op= int(input("Selecione uma das opções: "))
 
         if op == 1:
@@ -62,9 +62,7 @@ class UI:
             UI.transacao(cls.cliente_id)
         if op == 8:
             print("Opção não disponível!")
-        if op == 9:
-            UI.excluirConta(cls.cliente_id)
-        if op >= 10:
+        if op >= 9:
             print("Opção não disponível")
         
         return op

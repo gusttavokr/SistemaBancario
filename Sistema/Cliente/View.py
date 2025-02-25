@@ -91,9 +91,7 @@ class View:
         for p in Pedidos.listar():
             if p.getIdCliente() == cliente_id:
                 print(p)
-            else:
-                raise ValueError("Nenhum pedido feito!")
-
+            
     @staticmethod
     def excluirPedido(id):
         Pedidos.excluir(id)
