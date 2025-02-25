@@ -132,3 +132,10 @@ class View:
             else:
                 raise ValueError("Nenhum lançamento feito!")
 
+    @staticmethod
+    def atualizarSaldo(id, x):
+        for i in Contas.listar():
+            if i.getId() == id:
+                conta = Conta(i.getId(), i.getIdCliente(), i.getNumero(), (i.getSaldo()+x))
+                Contas.atualizar(conta)
+

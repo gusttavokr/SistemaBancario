@@ -28,5 +28,15 @@
         "email": "gustavo@email.com",
         "senha": "1234",
         "admin": false
+    },
+    {
+        "id": 3,
+        "nome": "Antonio",
+        "cpf": "12349393920",
+        "telefone": "292993902",
+        "idade": 20,
+        "email": "antonio@email.com",
+        "senha": "1234",
+        "admin": false
     }
 ]
