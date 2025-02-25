@@ -91,7 +91,7 @@ class View:
         for p in Pedidos.listar():
             if p.getIdCliente() == cliente_id:
                 print(p)
-            
+                            
     @staticmethod
     def excluirPedido(id):
         Pedidos.excluir(id)

@@ -64,7 +64,7 @@ class UI:
             print("Opção não disponível!")
         if op == 9:
             UI.depositar(cls.cliente_id)
-        if op >=10:
+        if op >=10 and not 99:
             print("Opção não disponível")
         
         return op
