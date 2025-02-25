@@ -17,8 +17,8 @@ public class App {
 
     public static int menuVisitante(Scanner scanner) {
         while(true) {
-            Systm.out.println("=========BEM-VINDO AO SISTEMA BANCÁRIO=========");
-            System.out.println("1-ENTRAR NO SISTEMA\n2-REALIZAR CADASTRO\n3-Sair");
+            System.out.println("=========BEM-VINDO AO SISTEMA BANCÁRIO=========");
+            System.out.println("1-ENTRAR NO SISTEMA\n2-REALIZAR CADASTRO\n3-SAIR");
             System.out.print("DIGITE A OPÇÃO DESEJADA: ");
             int op = scanner.nextInt();
             scanner.nextLine();
@@ -49,7 +49,7 @@ public class App {
 
     public static boolean menuAdmin(Scanner scanner) {
         while (true) {
-            Systm.out.println("=========MENU DO ADMIN=========");
+            System.out.println("=========MENU DO ADMIN=========");
             System.out.println("1-INSERIR CLIENTE\n2-LISTAR CLIENTES\n3-ATUALIZAR CLIENTE\n4-DELETAR CLIENTE\n\n5-INSERIR TIPO DE LANÇAMENTO\n6-LISTAR TIPOS DE LANÇAMENTOS\n7-ATUALIZAR TIPO DE LANÇAMENTO\n8-DELETAR TIPO DE LANÇAMENTO\n\n9-ANALISAR PEDIDO DE CARTÃO\n10-LISTAR CARTÕES\n11-ATUALIZAR CARTÃO\n12-DELETAR CARTÃO\n\n13-LISTAR CONTAS\n14-LISTAR LANÇAMENTOS\n\n15-LOGOUT");
             System.out.print("DIGITE A OPÇÃO DESEJADA: ");
             int op = scanner.nextInt();

@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "idConta": 1,
+    "debito": false,
+    "credito": true,
+    "limite": 756.0,
+    "validade": "28/01",
+    "numero": "974193764610717",
+    "senha": "5517"
+  }
+]
