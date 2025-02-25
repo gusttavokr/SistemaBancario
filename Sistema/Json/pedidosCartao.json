@@ -7,13 +7,6 @@
         "aprovacao": false
     },
     {
-        "id": 2,
-        "idCliente": 2,
-        "idConta": 2,
-        "tipoCartao": "DEBITO",
-        "aprovacao": false
-    },
-    {
         "id": 3,
         "idCliente": 2,
         "idConta": 2,
