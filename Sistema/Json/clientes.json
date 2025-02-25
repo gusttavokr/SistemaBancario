@@ -1,12 +1,32 @@
 [
-  {
-    "id": 0,
-    "nome": "Admin",
-    "cpf": "Admin",
-    "telefone": "Admin",
-    "idade": 18,
-    "email": "Admin",
-    "senha": "Admin",
-    "admin": true
-  }
+    {
+        "id": 0,
+        "nome": "Admin",
+        "cpf": "Admin",
+        "telefone": "Admin",
+        "idade": 18,
+        "email": "Admin",
+        "senha": "Admin",
+        "admin": true
+    },
+    {
+        "id": 2,
+        "nome": "Antonio",
+        "cpf": "23456789838",
+        "telefone": "23993992",
+        "idade": 20,
+        "email": "antonio@email.com",
+        "senha": "1234",
+        "admin": false
+    },
+    {
+        "id": 1,
+        "nome": "Gustavo",
+        "cpf": "929299390",
+        "telefone": "030202020",
+        "idade": 20,
+        "email": "gustavo@email.com",
+        "senha": "1234",
+        "admin": false
+    }
 ]

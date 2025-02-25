@@ -1,0 +1,9 @@
+[
+    {
+        "id": 1,
+        "idCliente": 1,
+        "idConta": 1,
+        "tipoCartao": "DEBITO",
+        "aprovacao": false
+    }
+]

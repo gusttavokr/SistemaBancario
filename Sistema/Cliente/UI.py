@@ -42,8 +42,8 @@ class UI:
     def menuCliente(cls):
         print("\n==============================")
         print("\nBem-vindo ao sistema bancário! \n")
-        print("1- Atualizar dados, 2- Ver meus dados 3- Pedir Cartão, 4- Listar Pedidos, 5- Excluir pedido, 6- Listar cartões(em testes)\n")
-        print("7- Transação(em testes), 8- Listar transações(em testes), 9- Depositar, 99- Sair\n")
+        print("1- Atualizar dados, 2- Ver meus dados 3- Pedir Cartão, 4- Listar Pedidos, 5- Excluir pedido, 6- Listar cartões\n")
+        print("7- Transação, 8- Listar transações, 9- Depositar, 99- Sair\n")
         op= int(input("Selecione uma das opções: "))
 
         if op == 1:
