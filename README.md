@@ -1,6 +1,6 @@
 # Simulação de Sistema Bancário
 
-Sistema web para gerenciamento e organização de escalas de plantões no setor público de saúde, promovendo mais eficiência, confiabilidade e centralização de dados entre gestores, profissionais de saúde e população.
+Simulador de um sistema bancário para práticas de fundamentos de Programação Orientada à Objetos.
 
 ## Equipe e Formas de Contato
 
