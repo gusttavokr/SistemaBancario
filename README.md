@@ -14,4 +14,4 @@ Simulador de um sistema bancário para práticas de fundamentos de Programação
 ## Manual do Desenvolvedor
 
 ## Em construção
-[🛠️ Orientações para os desenvolvedores do projeto]()
+[🛠️ Orientações para execução do projeto]()
