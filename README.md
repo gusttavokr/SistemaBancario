@@ -9,7 +9,7 @@ Simulador de um sistema bancário para práticas de fundamentos de Programação
 
 ## Documentação
 
-[📄 Link para os documentos do projeto](doc)
+[📄 Link para os documentos do projeto](Doc)
 
 ## Manual do Desenvolvedor
 
